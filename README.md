@@ -27,9 +27,9 @@ An Example List with Embedded Items:
 {
   user: // a reference to a User object
   Log: [
-    { editDelete: false, date: //timestamp, type: "Long Run", description: "Run 11.5-12 miles hard" pace: "90min @ 7:40", goals: "progress pace on last 4 miles", comments: "Best I've felt in long time, with no injury", location: "Rockefeller State Park, Sleepy Hollow, NY" },
+    { editDelete: false, date: /*timestamp*/, type: "Long Run", description: "Run 11.5-12 miles hard" pace: "90min @ 7:40", goals: "progress pace on last 4 miles", comments: "Best I've felt in long time, with no injury", location: "Rockefeller State Park, Sleepy Hollow, NY" },
 
-    { editDelete: false, date: //timestamp, type: "Workout", description:" 6x1k, 2min rest", pace: "1k @ 3:55-4:05", goals: "Finish workout", comments: "Felt strong till rep 5. Felt weak on 6 and died.", location: "Central park - Bridal Path" },
+    { editDelete: false, date: /*timestamp*/, type: "Workout", description:" 6x1k, 2min rest", pace: "1k @ 3:55-4:05", goals: "Finish workout", comments: "Felt strong till rep 5. Felt weak on 6 and died.", location: "Central park - Bridal Path" },
   ]
 }
 ```
