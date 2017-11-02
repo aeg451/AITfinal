@@ -51,7 +51,7 @@ An Example List with Embedded Items:
 
 /log/login - page to login
 
-![log login](documentation/WireLogin.png)
+![log login](documentation/WireLogIn.png)
 
 /log/register - page to register
 
