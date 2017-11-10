@@ -16,8 +16,4 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/css/base.css', (req, res) => {
-	res.render('base.css');
-});
-
 app.listen(process.env.PORT || 3000);
