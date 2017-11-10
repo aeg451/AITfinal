@@ -2,13 +2,7 @@
 const mongoose = require('mongoose');
 const URLSlugs = require('mongoose-url-slugs');
 
-
-// users
-// * our site requires authentication...
-// * so users have a username and password
 const User = new mongoose.Schema({
-  // username provided by authentication plugin
-  // password hash provided by authentication plugin
   email: {type: String, unique: true, required: true},
   Fullname: {type: String},
   username: {type: String, unique: true},
@@ -17,9 +11,6 @@ const User = new mongoose.Schema({
 });
 //User.plugin(URLSlugs('username'));
 
-// a Log
-//includes date, type, description, pace, goals, comments, and location
-//logs can be edited or deleted
 const Log = new mongoose.Schema({
   date: {type: String, required: true},
   type: {type: String, required: true},
@@ -31,14 +22,12 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-Log.plugin(URLSlugs('date type description pace goals comments locationS'));
+Log.plugin(URLSlugs('date type description pace goals comments location'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   log: [Log]
 });
-
-
 
 mongoose.model("User", User);
 mongoose.model("List", List);
