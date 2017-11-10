@@ -60,7 +60,7 @@ app.post('/', function(req, res) {
 			if(err){
 				console.log(err);
 			}
-			else if(req.body.delete === "delete"){
+			else if(req.body.delete == "delete"){
 				Log.remove();
 			}
 			res.redirect('/');
