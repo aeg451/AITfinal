@@ -57,7 +57,7 @@ const newLog = new Log({
 
 app.post('/', function(req, res) {
 	if(req.body.delete){
-		Log.findByIdAndRemove(Log._id, function(err1, log) {
+		Log.findByIdAndRemove(Log._id, function(err, log) {
 			if(err){
 				console.log(err);
 			}
