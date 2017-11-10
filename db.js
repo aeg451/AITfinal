@@ -40,7 +40,9 @@ const List = new mongoose.Schema({
 });
 
 
-
+mongoose.model("User", User);
+mongoose.model("List", List);
+mongoose.model("Log", Log);
 
 // hostname, db name
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
@@ -58,11 +60,9 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  let dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = "mongodb://localhost/aeg451FP";
+ dbconf = 'mongodb://localhost/aeg451FP';
 }
 // model / constructor is being registered
 // using some schema
-mongoose.model("User", User);
-mongoose.model("List", List);
-mongoose.model("Log", Log);
+
 mongoose.connect(dbconf);
