@@ -65,7 +65,6 @@ app.post('/', function(req, res) {
 			}
 			res.redirect('/');
 		});
-	}
 });
 
 
