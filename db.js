@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const URLSlugs = require('mongoose-url-slugs');
 
+
 // users
 // * our site requires authentication...
 // * so users have a username and password
@@ -14,7 +15,7 @@ const User = new mongoose.Schema({
   password: {type: String},
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
-//User.plugin(URLSlugs('username'));
+User.plugin(URLSlugs('username'));
 
 // a Log
 //includes date, type, description, pace, goals, comments, and location
@@ -30,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-User.plugin(URLSlugs('date'));
+
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
@@ -42,6 +43,7 @@ mongoose.model("User", User);
 mongoose.model("List", List);
 mongoose.model("Log", Log);
 
+// hostname, db name
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 if (process.env.NODE_ENV === 'PRODUCTION') {
  // if we're in PRODUCTION mode, then read the configration from a file
@@ -57,7 +59,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  let dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = "mongodb://localhost/aeg451";
+ dbconf = 'mongodb://localhost/aeg451FP';
 }
 // model / constructor is being registered
 // using some schema
