@@ -22,7 +22,7 @@ User.plugin(URLSlugs('username'));
 //logs can be edited or deleted
 const Log = new mongoose.Schema({
   date: {type: String, required: true},
-  type: {type: Boolean, default: false, required: true},
+  type: {type: String, required: true},
   description: {type: String, required: true},
   pace: {type: String, required: true},
   goals: {type: String, required: true},
@@ -31,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-Log.plugin(URLSlugs('date type description pace goals comments location'));
+Log.plugin(URLSlugs('date type description pace goals comments location _id'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  var dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = "mongodb://localhost/aeg451";
+ dbconf = "mongodb://localhost/aeg4511";
 }
 // model / constructor is being registered
 // using some schema

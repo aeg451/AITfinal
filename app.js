@@ -43,7 +43,9 @@ app.post('/', (req, res) => {
 		comments: req.body.comments,
 		location: req.body.location,
 		date: req.body.date
-	});
+}, {
+  _id: true
+});
 	newLog.save((err) => {
 		if(err){
 			console.log(err);
@@ -51,6 +53,9 @@ app.post('/', (req, res) => {
 		res.redirect('/');
 	});
 });
+//db.Person.remove({'last':'bob'})
+//db.Person.update({'first':'foo'}, {$set: {'last':'bar'}})
+
 
 // app.post('/', (req, res) => {
 // if(req.body.delete == true){

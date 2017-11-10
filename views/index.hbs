@@ -1,41 +1,60 @@
 <center>
-<h1>Running Log</h1>
+<h1>Running Log</h1></center>
 <br>
 <div>
 <form method='POST' action=''>
-	<fieldset>
-    <label>Type:</label>
-	<input type='radio' name='type' value='dailyRun' id='dailyRun'><label for="dailyRun">Daily Run</label><br>
-	<input type='radio' name='type' value='workout' id='workout'><label for="workout">Workout</label><br>
-	<input type='radio' name='type' value='tempoRun' id='tempoRun'><label for="tempoRun">Tempo Run</label><br>
-	<input type='radio' name='type' value='fartlek' id='fartlek'><label for="fartlek">Fartlek</label><br>
-	<input type='radio' name='type' value='logRun' id='logRun'><label for="logRun">Log Run</label><br>
-	<input type='radio' name='type' value='other' id='other'><label for="other">Other</label><br>
-	</fieldset>
-	<label for="date">Date:</label><input type='text' name='date' value='' id='date'><br>
-	<label for="pace">Pace:</label><input type='text' name='pace' value='' id='pace'><br>
-	<label for="description">Description:</label><input type='text' name='description' value='' id='description'><br>
-	<label for="goals">Goals:</label><input type='text' name='goals' value='' id='goals'><br>
-	<label for="comments">Comments:</label><input type='text' name='comments' value='' id='comments'><br>
-	<label for="location">Location:</label><input type='text' name='location' value='' id='location'><br>
-	<input type='submit' value='Submit'>
+<table>
+	<tr>
+		<td>
+			<fieldset>
+			<label><b>Type:</b></label><br>
+			<table>
+			<tr><td><input type='radio' name='type' value='Daily Run'><label>Daily Run</label></td>
+			<td><input type='radio' name='type' value='Workout'><label>Workout</label></td>
+			<td><input type='radio' name='type' value='Tempo Run'><label>Tempo Run</label></td></tr>
+			<tr><td><input type='radio' name='type' value='Fartlek'><label>Fartlek</label></td>
+			<td><input type='radio' name='type' value='Long Run'><label>Long Run</label></td>
+			<td><input type='radio' name='type' value='Other'><label>Other</label></td></tr>
+			</table>
+			</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td><fieldset><label><b>Pace:</b></label><input type='text' name='pace' value='' placeholder="pace">
+		<label><b>Date:</b></label><input type='text' name='date' value=''placeholder="mm/dd/yyyy"></fieldset></td>
+	</tr>
+	<tr>
+		<td><fieldset><label><b>Description:</b></label><input type='text' name='description' placeholder="description" value=''>
+		<label><b>Goals:</b></label><input type='text' name='goals' value=''placeholder="goals"></fieldset></td>
+	</tr>
+	<tr>
+		<td><fieldset><label><b>Comments:</b></label><input type='text' name='comments' placeholder="comments" value=''>
+		<label><b>Location:</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
+	</tr>
+	<tr>		
+	<td><fieldset><input type='submit' value='Submit'></fieldset></td>
+	</table>
 </form>
-</div>
+</div><br><br>
 
 {{#each log as |logged|}}
 <form method='POST' action=''>
 
-<div>
-<input type='radio' name='delete' value='delete' id='dailyRun'><label for="delete">Delete</label><br>
-			{{logged.type}}<br>
-			{{logged.description}}<br>
-			{{logged.pace}}<br>
-			{{logged.goals}}<br>
-			{{logged.comments}}<br>
-			{{logged.location}}<br>
-			{{logged.date}}<br>
-			<input type='submit' value='Delete'>
-	</div>
+<table>
+	<tr>
+		<td><input type='checkbox' name='delete' value='delete'><input type='submit' value='Delete'> |
+		<input type='hidden' name='id' value='{{logged._id}}'</td>
+		<td>{{logged.type}} |</td>
+		<td>{{logged.description}} |</td>
+		<td>{{logged.pace}} |</td>
+		<td>{{logged.goals}} |</td>
+		<td>{{logged.comments}} |</td>
+		<td>{{logged.location}} |</td>
+		<td>{{logged.date}} </td>
+	</tr>
+</table>
+<hr>
+
 </form>
 {{/each}}
-</center>
+
