@@ -53,4 +53,4 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 // model / constructor is being registered
 // using some schema
 
-mongoose.connect(dbconf);
+mongoose.connect(dbconf, function(err) { if (err) console.log(err); } );
