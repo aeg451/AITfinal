@@ -31,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-Log.plugin(URLSlugs('type description pace goals comments location'));
+//Log.plugin(URLSlugs('type description pace goals comments location'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},

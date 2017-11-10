@@ -73,6 +73,7 @@ app.post('/', (req, res) => {
 // 		res.render('index', {log: log});
 // 	});
 // });
+
 app.get('/css/base.css', (req, res) => {
 	res.render('base.css');
 });
