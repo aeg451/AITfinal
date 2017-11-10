@@ -34,23 +34,23 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.post('/', (req, res) => {
-	const newLog = new Log({
-		type: req.body.type,
-		description: req.body.description,
-		pace: req.body.pace,
-		goals: req.body.goals,
-		comments: req.body.comments,
-		location: req.body.location,
-		date: req.body.date
-	});
-	newLog.save((err) => {
-		if(err){
-			console.log(err);
-		}
-		res.redirect('/');
-	});
-});
+// app.post('/', (req, res) => {
+// 	const newLog = new Log({
+// 		type: req.body.type,
+// 		description: req.body.description,
+// 		pace: req.body.pace,
+// 		goals: req.body.goals,
+// 		comments: req.body.comments,
+// 		location: req.body.location,
+// 		date: req.body.date
+// 	});
+// 	newLog.save((err) => {
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.redirect('/');
+// 	});
+// });
 
 // app.post('/', (req, res) => {
 // if(req.body.delete == true){
