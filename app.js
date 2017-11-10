@@ -56,15 +56,14 @@ const newLog = new Log({
 });
 
 app.post('/', function(req, res) {
-	Log.findOne( {_id: req.body.id}, function(err, log) {
+	if(req.body.delete){
+		Log.findByIdAndRemove(req.body.id, (err) => {  
 			if(err){
-				console.log(err);
-			}
-			else if(req.body.delete){
-				Log.remove({_id: req.body.id});
-			}
-			res.redirect('/');
-		});
+						console.log(err);
+					}
+	  	});		
+	}
+	res.redirect('/');	
 });
 
 
