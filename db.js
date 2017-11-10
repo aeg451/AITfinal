@@ -2,18 +2,28 @@
 const mongoose = require('mongoose');
 const URLSlugs = require('mongoose-url-slugs');
 
+
+// users
+// * our site requires authentication...
+// * so users have a username and password
 const User = new mongoose.Schema({
+  // username provided by authentication plugin
+  // password hash provided by authentication plugin
   email: {type: String, unique: true, required: true},
   Fullname: {type: String},
   username: {type: String, unique: true},
   password: {type: String},
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
-//User.plugin(URLSlugs('username'));
+User.plugin(URLSlugs('username'));
 
+// a Log
+//includes date, type, description, pace, goals, comments, and location
+//logs can be edited or deleted
 const Log = new mongoose.Schema({
-  date: {type: String, required: true},
-  type: {type: String, required: true},
+  editDelete: {type: Boolean, default: false, required: true},
+  date: {type: Date, required: true},
+  type: {type: Boolean, default: false, required: true},
   description: {type: String, required: true},
   pace: {type: String, required: true},
   goals: {type: String, required: true},
@@ -22,12 +32,13 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-Log.plugin(URLSlugs('date type description pace goals comments location'));
+
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   log: [Log]
 });
+
 
 mongoose.model("User", User);
 mongoose.model("List", List);
@@ -45,7 +56,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  // our configuration file will be in json, so parse it and set the
  // conenction string appropriately!
  const conf = JSON.parse(data);
- let dbconf = conf.dbconf;
+ var dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
  dbconf = "mongodb://localhost/aeg451";
@@ -53,4 +64,4 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
 // model / constructor is being registered
 // using some schema
 
-mongoose.connect(dbconf, function(err) { if (err) console.log(err); } );
+mongoose.connect(dbconf);
