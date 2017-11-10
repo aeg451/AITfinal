@@ -22,7 +22,7 @@ const User = new mongoose.Schema({
 //logs can be edited or deleted
 const Log = new mongoose.Schema({
   date: {type: String, required: true},
-  type: {type: Boolean, default: false, required: true},
+  type: {type: String, required: true},
   description: {type: String, required: true},
   pace: {type: String, required: true},
   goals: {type: String, required: true},
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  var dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = "mongodb://localhost/aeg4511";
+ dbconf = "mongodb://localhost/aeg451";
 }
 // model / constructor is being registered
 // using some schema
