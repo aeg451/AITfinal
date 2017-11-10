@@ -9,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 require('./db');
 const mongoose = require('mongoose');
-//const User = mongoose.model('User');
+const User = mongoose.model('User');
 //const List = mongoose.model('List');
 const Log = mongoose.model('Log');
 
