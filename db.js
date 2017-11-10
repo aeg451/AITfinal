@@ -1,7 +1,5 @@
 // 1ST DRAFT DATA MODEL
 const mongoose = require('mongoose');
-// YOU DO NOT HAVE TO EXPLICITLY DEFINE SLUG IN YOUR SCHEMA
-// plugin takes care of it for you
 const URLSlugs = require('mongoose-url-slugs');
 
 

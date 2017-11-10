@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const [PORT, HOST] = [3000, '127.0.0.1'];
+//const [PORT, HOST] = [3000, '127.0.0.1'];
+const PORT = 3000;
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
@@ -31,4 +32,4 @@ app.get('/css/base.css', (req, res) => {
 	res.render('base.css');
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || PORT);
