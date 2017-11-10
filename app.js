@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const [PORT, HOST] = [3000, '127.0.0.1'];
+//const [PORT, HOST] = [3000, '127.0.0.1'];
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -63,14 +63,14 @@ app.post('/', (req, res) => {
 // res.redirect('/');
 // });
 
-app.get('/index/:slug', (req, res) => {
-	Log.find({slug: req.params.slug}, (err, log) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('index', {log: log});
-	});
-});
+// app.get('/index/:slug', (req, res) => {
+// 	Log.find({slug: req.params.slug}, (err, log) => {
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.render('index', {log: log});
+// 	});
+// });
 
 app.get('/css/base.css', (req, res) => {
 	res.render('base.css');
