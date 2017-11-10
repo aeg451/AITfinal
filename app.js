@@ -18,34 +18,34 @@ app.get('/', (req, res) => {
 	res.render('index');
 });
 
-app.get('/', (req, res) => {
-	Log.find({}, (err, log) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('index', {log: log});	
-	});
-});
+// app.get('/', (req, res) => {
+// 	Log.find({}, (err, log) => {
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.render('index', {log: log});	
+// 	});
+// });
 
-app.post('/', (req, res) => {
-	const newLog = new Log({
-		type: req.body.type,
-		description: req.body.description,
-		pace: req.body.pace,
-		goals: req.body.goals,
-		comments: req.body.comments,
-		location: req.body.location,
-		date: req.body.date
-}, {
-  _id: true
-});
-	newLog.save((err) => {
-		if(err){
-			console.log(err);
-		}
-		res.redirect('/');
-	});
-});
+// app.post('/', (req, res) => {
+// 	const newLog = new Log({
+// 		type: req.body.type,
+// 		description: req.body.description,
+// 		pace: req.body.pace,
+// 		goals: req.body.goals,
+// 		comments: req.body.comments,
+// 		location: req.body.location,
+// 		date: req.body.date
+// }, {
+//   _id: true
+// });
+// 	newLog.save((err) => {
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.redirect('/');
+// 	});
+// });
 
 
 //db.Person.remove({'last':'bob'})
