@@ -15,14 +15,13 @@ const User = new mongoose.Schema({
   password: {type: String},
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
-User.plugin(URLSlugs('username'));
+//User.plugin(URLSlugs('username'));
 
 // a Log
 //includes date, type, description, pace, goals, comments, and location
 //logs can be edited or deleted
 const Log = new mongoose.Schema({
-  editDelete: {type: Boolean, default: false, required: true},
-  date: {type: Date, required: true},
+  date: {type: String, required: true},
   type: {type: Boolean, default: false, required: true},
   description: {type: String, required: true},
   pace: {type: String, required: true},
@@ -32,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-
+Log.plugin(URLSlugs('type description pace goals comments location'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
