@@ -15,7 +15,7 @@ const User = new mongoose.Schema({
   password: {type: String},
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
-User.plugin(URLSlugs('username'));
+//User.plugin(URLSlugs('username'));
 
 // a Log
 //includes date, type, description, pace, goals, comments, and location
@@ -31,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-//Log.plugin(URLSlugs('date type description pace goals comments location _id'));
+Log.plugin(URLSlugs('date type description pace goals comments locationS'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
