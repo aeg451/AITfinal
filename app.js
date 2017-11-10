@@ -52,27 +52,27 @@ app.post('/', (req, res) => {
 	});
 });
 
-app.post('/', (req, res) => {
-if(req.body.delete == true){
-Log.findByIdAndRemove(Log._id, function(err1, doc1) { // doc here is actually err
-        // handle err1
-        console.log('findByIdAndRemove doc: ', doc1);
-        Log.find({}, function(err2, docs) {
-          console.log('Finding all: ', docs)
-        })
-      })
-}
-res.redirect('/');
-});
+// app.post('/', (req, res) => {
+// if(req.body.delete == true){
+// Log.findByIdAndRemove(Log._id, function(err1, doc1) { // doc here is actually err
+//         // handle err1
+//         console.log('findByIdAndRemove doc: ', doc1);
+//         Log.find({}, function(err2, docs) {
+//           console.log('Finding all: ', docs)
+//         })
+//       })
+// }
+// res.redirect('/');
+// });
 
-app.get('/index/:slug', (req, res) => {
-	Log.find({slug: req.params.slug}, (err, log) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('index', {log: log});
-	});
-});
+// app.get('/index/:slug', (req, res) => {
+// 	Log.find({slug: req.params.slug}, (err, log) => {
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.render('index', {log: log});
+// 	});
+// });
 app.get('/css/base.css', (req, res) => {
 	res.render('base.css');
 });
