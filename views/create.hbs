@@ -1,1 +1,38 @@
-create
+<center>
+<h1>Running Log</h1></center>
+<br>
+<div>
+<form method="POST" action="">
+<table>
+	<tr>
+		<td>
+			<fieldset>
+			<label><b>Type:</b></label><br>
+			<table>
+			<tr><td><input type='radio' name='type' value='Daily Run'><label>Daily Run</label></td>
+			<td><input type='radio' name='type' value='Workout'><label>Workout</label></td>
+			<td><input type='radio' name='type' value='Tempo Run'><label>Tempo Run</label></td></tr>
+			<tr><td><input type='radio' name='type' value='Fartlek'><label>Fartlek</label></td>
+			<td><input type='radio' name='type' value='Long Run'><label>Long Run</label></td>
+			<td><input type='radio' name='type' value='Other'><label>Other</label></td></tr>
+			</table>
+			</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td><fieldset><label><b>Pace:</b></label><input type='text' name='pace' value='' placeholder="pace">
+		<label><b>Date:</b></label><input type='text' name='date' value=''placeholder="mm/dd/yyyy"></fieldset></td>
+	</tr>
+	<tr>
+		<td><fieldset><label><b>Description:</b></label><input type='text' name='description' placeholder="description" value=''>
+		<label><b>Goals:</b></label><input type='text' name='goals' value=''placeholder="goals"></fieldset></td>
+	</tr>
+	<tr>
+		<td><fieldset><label><b>Comments:</b></label><input type='text' name='comments' placeholder="comments" value=''>
+		<label><b>Location:</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
+	</tr>
+	<tr>		
+	<td><fieldset><input type='submit' value='Post'></fieldset></td>
+	</table>
+</form>
+</div><br><br>
