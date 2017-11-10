@@ -55,6 +55,18 @@ const newLog = new Log({
   });
 });
 
+app.post('/', function(req, res) {
+	if(req.body.delete){
+		Log.findByIdAndRemove(Log._id, function(err1, log) {
+			if(err){
+				console.log(err);
+			}
+			res.redirect('/');
+		});
+	}
+});
+
+
 app.get('/:slug', function(req, res){
   Log.findOne({slug: req.params.slug}, function(err, log){
 		if(err){
