@@ -61,7 +61,6 @@ Log.findByIdAndRemove(Log._id, function(err1, doc1) { // doc here is actually er
           console.log('Finding all: ', docs)
         })
       })
-res.redirect('/');
 }
 res.redirect('/');
 });
