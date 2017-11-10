@@ -1,13 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-//const [PORT, HOST] = [3000, '127.0.0.1'];
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./db');
 const mongoose = require('mongoose');
-//const User = mongoose.model('User');
+const User = mongoose.model('User');
 //const List = mongoose.model('List');
 const Log = mongoose.model('Log');
 
@@ -25,25 +24,25 @@ app.get('/', (req, res) => {
 	});
 });
 
-// app.post('/', (req, res) => {
-// 	const newLog = new Log({
-// 		type: req.body.type,
-// 		description: req.body.description,
-// 		pace: req.body.pace,
-// 		goals: req.body.goals,
-// 		comments: req.body.comments,
-// 		location: req.body.location,
-// 		date: req.body.date
-// }, {
-//   _id: true
-// });
-// 	newLog.save((err) => {
-// 		if(err){
-// 			console.log(err);
-// 		}
-// 		res.redirect('/');
-// 	});
-// });
+app.post('/', (req, res) => {
+	const newLog = new Log({
+		type: req.body.type,
+		description: req.body.description,
+		pace: req.body.pace,
+		goals: req.body.goals,
+		comments: req.body.comments,
+		location: req.body.location,
+		date: req.body.date
+}, {
+  _id: true
+});
+	newLog.save((err) => {
+		if(err){
+			console.log(err);
+		}
+		res.redirect('/');
+	});
+});
 
 
 //db.Person.remove({'last':'bob'})
@@ -72,9 +71,9 @@ app.get('/', (req, res) => {
 // 	});
 // });
 
-app.get('/css/base.css', (req, res) => {
-	res.render('base.css');
-});
+// app.get('.public/css/base.css', (req, res) => {
+// 	res.render('base.css');
+// });
 
 app.listen(process.env.PORT || 3000);
 
