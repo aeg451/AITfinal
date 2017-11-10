@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.get('/', (req, res) => {
+	res.render('index');
+});
 
 app.get('/', (req, res) => {
 	Log.find({}, (err, log) => {
@@ -71,9 +74,9 @@ app.post('/', (req, res) => {
 // 	});
 // });
 
-// app.get('.public/css/base.css', (req, res) => {
-// 	res.render('base.css');
-// });
+app.get('/css/base.css', (req, res) => {
+	res.render('base.css');
+});
 
 app.listen(process.env.PORT || 3000);
 
