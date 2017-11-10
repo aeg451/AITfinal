@@ -21,8 +21,7 @@ User.plugin(URLSlugs('username'));
 //includes date, type, description, pace, goals, comments, and location
 //logs can be edited or deleted
 const Log = new mongoose.Schema({
-  editDelete: {type: Boolean, default: false, required: true},
-  date: {type: Date, required: true},
+  date: {type: String, required: true},
   type: {type: Boolean, default: false, required: true},
   description: {type: String, required: true},
   pace: {type: String, required: true},
@@ -32,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-
+User.plugin(URLSlugs('type'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
