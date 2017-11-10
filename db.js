@@ -44,7 +44,6 @@ mongoose.model("User", User);
 mongoose.model("List", List);
 mongoose.model("Log", Log);
 
-// hostname, db name
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 if (process.env.NODE_ENV === 'PRODUCTION') {
  // if we're in PRODUCTION mode, then read the configration from a file
@@ -60,7 +59,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  let dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = 'mongodb://localhost/aeg451FP';
+ dbconf = "mongodb://localhost/aeg451";
 }
 // model / constructor is being registered
 // using some schema
