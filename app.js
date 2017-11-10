@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 		if(err){
 			console.log(err);
 		}
-		res.render('index', {log: log});	
+		res.render('/', {log: log});	
 	});
 });
 
