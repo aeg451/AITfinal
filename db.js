@@ -15,7 +15,7 @@ const User = new mongoose.Schema({
   password: {type: String},
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
-User.plugin(URLSlugs('username'));
+//User.plugin(URLSlugs('username'));
 
 // a Log
 //includes date, type, description, pace, goals, comments, and location
@@ -31,7 +31,7 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-User.plugin(URLSlugs('type'));
+User.plugin(URLSlugs('date'));
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
@@ -55,10 +55,10 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  // our configuration file will be in json, so parse it and set the
  // conenction string appropriately!
  const conf = JSON.parse(data);
- let dbconf = conf.dbconf;
+ var dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
- dbconf = "mongodb://localhost/aeg451";
+ dbconf = "mongodb://localhost/aeg4511";
 }
 // model / constructor is being registered
 // using some schema
