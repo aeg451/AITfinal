@@ -100,11 +100,11 @@ app.get('/createRace', (req, res) => {
 
 app.post('/createRace', function(req, res) {
 const newRace = new Race({
-		date: req.body.date,
 		distance: req.body.distance,
 		time: req.body.time,
 		comments: req.body.comments,
 		location: req.body.location,
+		date: req.body.date
 });
   newRace.save(function(err) {
     if(err) {
