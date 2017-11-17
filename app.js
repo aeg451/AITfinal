@@ -22,6 +22,10 @@ const sessionOptions = {
 };
 app.use(session(sessionOptions));
 
+app.get('/', (req, res) => {
+	res.render('/');
+});
+
 ///////////////////////////////////////////////////////////
 //running log
 ///////////////////////////////////////////////////////////
@@ -111,16 +115,16 @@ const newRace = new Race({
     }
   });
 });
-//update
+
 app.post('/race', function(req, res) {
 	if(req.body.delete){
-		Race.findByIdAndUpdate(req.body.id, (err) => {  
+		Race.findByIdAndRemove(req.body.id, (err) => {  
 			if(err){
 						console.log(err);
 					}
 	  	});		
 	}
-	res.redirect('/updateRace');	
+	res.redirect('/race');	
 });
 
 app.get('/race:slug', function(req, res){
