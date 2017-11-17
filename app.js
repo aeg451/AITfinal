@@ -74,7 +74,7 @@ app.post('/log', function(req, res) {
 });
 
 
-app.get('/log:slug', function(req, res){
+app.get('/log/:slug', function(req, res){
   Log.findOne({slug: req.params.slug}, function(err, log){
 		if(err){
 			console.log(err);
@@ -127,7 +127,7 @@ app.post('/race', function(req, res) {
 	res.redirect('/race');	
 });
 
-app.get('/race:slug', function(req, res){
+app.get('/race/:slug', function(req, res){
   Race.findOne({slug: req.params.slug}, function(err, race){
 		if(err){
 			console.log(err);
