@@ -21,9 +21,9 @@ const sessionOptions = {
 	saveUninitialized: true
 };
 app.use(session(sessionOptions));
-
+//index
 app.get('/', (req, res) => {
-	res.render('/');
+	res.render('/index');
 });
 
 ///////////////////////////////////////////////////////////
