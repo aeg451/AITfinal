@@ -32,16 +32,34 @@ const Log = new mongoose.Schema({
   _id: true
 });
 Log.plugin(URLSlugs('date type description pace'));
+
+
+// a Racing log
+//includes date, distance, time, comments, and location
+//races can be deleted
+const Race = new mongoose.Schema({
+  date: {type: String, required: true},
+  distance: {type: String, required: true},
+  time: {type: String, required: true},
+  comments: {type: String, required: true},
+  location: {type: String, required: true}
+}, {
+  _id: true
+});
+Race.plugin(URLSlugs('date race time location'));
+
 // a Log list
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  log: [Log]
+  log: [Log],
+  race: [Race]
 });
 
 
 mongoose.model("User", User);
 mongoose.model("List", List);
 mongoose.model("Log", Log);
+mongoose.model("Race", Race);
 
 
 // is the environment variable, NODE_ENV, set to PRODUCTION? 

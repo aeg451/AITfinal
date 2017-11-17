@@ -1,0 +1,23 @@
+<div>
+<a href='/create'>Log New Race</a></div>
+<div>
+
+{{#each race as |raced|}}
+<table>
+	<tr>
+		<td><input type='checkbox' name='delete' value='delete'><input type='submit' value='Delete'> |
+		<input type='hidden' name='id' value='{{raced._id}}'</td>
+		<td>{{raced.date}} |</td>
+		<td>{{raced.distancce}} |</td>
+		<td>{{raced.time}} |</td>
+		<td>{{raced.goals}} |</td>
+		<td>{{raced.comments}} |</td>
+		<td>{{raced.location}} |</td>
+	</tr>
+</table>
+<hr>
+
+</form>
+{{/each}}
+
+</div>
