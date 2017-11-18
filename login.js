@@ -1,8 +1,27 @@
+//Milestone 3:
+//I have added pages to signup, login, profile, etc 
+//also added routes, server, user.
+//Goal: rearrange folders and apps so I have get them to work and
+//to obvs finish.
+//https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+//This will be added to index.hbs
+<!-- <div class="container">
+    <div class="jumbotron text-center">
+        <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+        <p>Login or Register with:</p>
+
+        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+    </div>
+</div> -->
+
+
+
+//milestone 2:
 //https://code.tutsplus.com/articles/social-authentication-for-nodejs-apps-with-passport--cms-21618
 //https://github.com/tutsplus/passport-social
 //Will use ^^^ github to help config
-
-
 //I would love to add a function that will allow the user to 
 //post there stat/log onto their twitter or facebook to share it
 //Will do more research on that

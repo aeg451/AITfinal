@@ -1,11 +1,9 @@
-// 1ST DRAFT DATA MODEL
 const mongoose = require('mongoose');
 const URLSlugs = require('mongoose-url-slugs');
-
-
-// users
-// * our site requires authentication...
-// * so users have a username and password
+//const passportLocalMongoose = require('passport-local-mongoose');
+///////////////////////////////////////////////////////////
+//User
+///////////////////////////////////////////////////////////
 const User = new mongoose.Schema({
   // username provided by authentication plugin
   // password hash provided by authentication plugin
@@ -16,10 +14,11 @@ const User = new mongoose.Schema({
   lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
 });
 User.plugin(URLSlugs('username'));
-
-// a Log
-//includes date, type, description, pace, goals, comments, and location
-//logs can be edited or deleted
+// var User = new mongoose.Schema({ });
+// User.plugin(passportLocalMongoose);
+///////////////////////////////////////////////////////////
+//Log
+///////////////////////////////////////////////////////////
 const Log = new mongoose.Schema({
   date: {type: String, required: true},
   type: {type: String, required: true},
@@ -32,11 +31,9 @@ const Log = new mongoose.Schema({
   _id: true
 });
 Log.plugin(URLSlugs('date type description pace'));
-
-
-// a Racing log
-//includes date, distance, time, comments, and location
-//races can be deleted
+///////////////////////////////////////////////////////////
+//Race
+///////////////////////////////////////////////////////////
 const Race = new mongoose.Schema({
   date: {type: String, required: true},
   distance: {type: String, required: true},
@@ -47,21 +44,24 @@ const Race = new mongoose.Schema({
   _id: true
 });
 Race.plugin(URLSlugs('date race time location'));
-
-// a Log list
+///////////////////////////////////////////////////////////
+//List
+///////////////////////////////////////////////////////////
 const List = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
   log: [Log],
   race: [Race]
 });
-
-
+///////////////////////////////////////////////////////////
+//Models
+///////////////////////////////////////////////////////////
 mongoose.model("User", User);
 mongoose.model("List", List);
 mongoose.model("Log", Log);
 mongoose.model("Race", Race);
-
-
+///////////////////////////////////////////////////////////
+//Config
+///////////////////////////////////////////////////////////
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 if (process.env.NODE_ENV === 'PRODUCTION') {
  // if we're in PRODUCTION mode, then read the configration from a file
@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  // our configuration file will be in json, so parse it and set the
  // conenction string appropriately!
  const conf = JSON.parse(data);
- var dbconf = conf.dbconf;
+ let dbconf = conf.dbconf;
 } else {
  // if we're not in PRODUCTION mode, then use
  dbconf = "mongodb://localhost/aeg451FP";
