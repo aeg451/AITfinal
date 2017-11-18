@@ -21,22 +21,6 @@ const sessionOptions = {
 	saveUninitialized: true
 };
 app.use(session(sessionOptions));
-//index
-app.get('/', (req, res) => {
-	res.render('/index');
-});
-
-///////////////////////////////////////////////////////////
-//running log
-///////////////////////////////////////////////////////////
-app.get('log', (req, res) => {
-	Log.find({}, (err, log) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('log', {log: log});	
-	});
-});
 
 app.get('/createLog', (req, res) => {
 	res.render('createLog');
@@ -57,41 +41,9 @@ const newLog = new Log({
       console.log(err);
     }
     else {
-      res.redirect('/log');
+      res.redirect('/');
     }
   });
-});
-
-app.post('/log', function(req, res) {
-	if(req.body.delete){
-		Log.findByIdAndRemove(req.body.id, (err) => {  
-			if(err){
-						console.log(err);
-					}
-	  	});		
-	}
-	res.redirect('/log');	
-});
-
-
-app.get('/log/:slug', function(req, res){
-  Log.findOne({slug: req.params.slug}, function(err, log){
-		if(err){
-			console.log(err);
-		}
-		res.render('log', {log: log});
-	});
-});
-///////////////////////////////////////////////////////////
-//RACE
-///////////////////////////////////////////////////////////
-app.get('race', (req, res) => {
-	Race.find({}, (err, race) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('race', {race: race});	
-	});
 });
 
 app.get('/createRace', (req, res) => {
@@ -116,6 +68,45 @@ const newRace = new Race({
   });
 });
 
+app.get('/', (req, res) => {
+	Log.find({}, (err, log) => {
+		if(err){
+			console.log(err);
+		}
+		res.render('index', {log: log});	
+	});
+});
+
+app.post('/', function(req, res) {
+	if(req.body.delete){
+		Log.findByIdAndRemove(req.body.id, (err) => {  
+			if(err){
+						console.log(err);
+					}
+	  	});		
+	}
+	res.redirect('/');	
+});
+
+
+app.get('/:slug', function(req, res){
+  Log.findOne({slug: req.params.slug}, function(err, log){
+		if(err){
+			console.log(err);
+		}
+		res.render('index', {log: log});
+	});
+});
+
+app.get('/race', (req, res) => {
+	Race.find({}, (err, race) => {
+		if(err){
+			console.log(err);
+		}
+		res.render('race', {race: race});	
+	});
+});
+
 app.post('/race', function(req, res) {
 	if(req.body.delete){
 		Race.findByIdAndRemove(req.body.id, (err) => {  
@@ -135,9 +126,7 @@ app.get('/race/:slug', function(req, res){
 		res.render('race', {race: race});
 	});
 });
-///////////////////////////////////////////////////////////
-//css
-///////////////////////////////////////////////////////////
+
 app.get('/css/base.css', (req, res) => {
 	res.render('base.css');
 });

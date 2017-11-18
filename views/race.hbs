@@ -1,8 +1,11 @@
 <div>
-<a href='/createRace'>Log New Race</a></div>
+<h2>Racing Log</h2><br>
+<a href='/'>View Running Logs</a>  | <a href='/createLog'>Log New Run</a> | <a href='/createRace'>Log New Race</a>
 <div>
-
+<br><br>
 {{#each race as |raced|}}
+<form method='POST' action="">
+
 <table>
 	<tr>
 		<td><input type='checkbox' name='delete' value='delete'><input type='submit' value='Delete'> |
@@ -11,7 +14,7 @@
 		<td>{{raced.distance}} |</td>
 		<td>{{raced.time}} |</td>
 		<td>{{raced.comments}} |</td>
-		<td>{{raced.location}} |</td>
+		<td>{{raced.location}} </td>
 	</tr>
 </table>
 <hr>
