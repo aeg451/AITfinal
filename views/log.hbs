@@ -1,13 +1,15 @@
 <div>
-<a href='/createLog'>Create New Log</a></div>
+<h2>Running Log</h2><br>
+<a href='/createLog'>Log New Run</a> | <a href='/race'>View Racing Logs</a> | <a href='/createRace'>Log New Race</a>
 <div>
+<br><br>
 
 {{#each log as |logged|}}
 <form method='POST' action="">
 
 <table>
 	<tr>
-		<td><input type='checkbox' name='delete' value='delete'><input type='submit' value='Delete'> |
+		<td><input type='checkbox' name='delete' value='delete1'><input type='submit' value='Delete'> |
 		<input type='hidden' name='id' value='{{logged._id}}'</td>
 		<td>{{logged.type}} |</td>
 		<td>{{logged.description}} |</td>
@@ -23,4 +25,5 @@
 </form>
 {{/each}}
 
-</div>
+</div> 
+

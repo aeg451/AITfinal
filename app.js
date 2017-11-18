@@ -21,7 +21,15 @@ const sessionOptions = {
 	saveUninitialized: true
 };
 app.use(session(sessionOptions));
-
+///////////////////////////////////////////////////////////
+//INDEX
+///////////////////////////////////////////////////////////
+app.get('/', (req, res) => {
+	res.render('index');
+});
+///////////////////////////////////////////////////////////
+//CREATELOG
+///////////////////////////////////////////////////////////
 app.get('/createLog', (req, res) => {
 	res.render('createLog');
 });
@@ -41,11 +49,13 @@ const newLog = new Log({
       console.log(err);
     }
     else {
-      res.redirect('/');
+      res.redirect('/log');
     }
   });
 });
-
+///////////////////////////////////////////////////////////
+//CREATERACE
+///////////////////////////////////////////////////////////
 app.get('/createRace', (req, res) => {
 	res.render('createRace');
 });
@@ -67,17 +77,19 @@ const newRace = new Race({
     }
   });
 });
-
-app.get('/', (req, res) => {
+///////////////////////////////////////////////////////////
+//RUNNING LOG
+///////////////////////////////////////////////////////////
+app.get('/log', (req, res) => {
 	Log.find({}, (err, log) => {
 		if(err){
 			console.log(err);
 		}
-		res.render('index', {log: log});	
+		res.render('log', {log: log});	
 	});
 });
 
-app.post('/', function(req, res) {
+app.post('/log', function(req, res) {
 	if(req.body.delete){
 		Log.findByIdAndRemove(req.body.id, (err) => {  
 			if(err){
@@ -85,19 +97,12 @@ app.post('/', function(req, res) {
 					}
 	  	});		
 	}
-	res.redirect('/');	
+	res.redirect('/log');	
 });
 
-
-app.get('/:slug', function(req, res){
-  Log.findOne({slug: req.params.slug}, function(err, log){
-		if(err){
-			console.log(err);
-		}
-		res.render('index', {log: log});
-	});
-});
-
+///////////////////////////////////////////////////////////
+//RACING LOG
+///////////////////////////////////////////////////////////
 app.get('/race', (req, res) => {
 	Race.find({}, (err, race) => {
 		if(err){
@@ -117,16 +122,29 @@ app.post('/race', function(req, res) {
 	}
 	res.redirect('/race');	
 });
+///////////////////////////////////////////////////////////
+//SLUGS
+///////////////////////////////////////////////////////////
+// app.get('/log/:slug', function(req, res){
+//   Log.findOne({slug: req.params.slug}, function(err, log){
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.render('log', {log: log});
+// 	});
+// });
 
-app.get('/race/:slug', function(req, res){
-  Race.findOne({slug: req.params.slug}, function(err, race){
-		if(err){
-			console.log(err);
-		}
-		res.render('race', {race: race});
-	});
-});
-
+// app.get('/race/:slug', function(req, res){
+//   Race.findOne({slug: req.params.slug}, function(err, race){
+// 		if(err){
+// 			console.log(err);
+// 		}
+// 		res.render('race', {race: race});
+// 	});
+// });
+///////////////////////////////////////////////////////////
+//CSS
+///////////////////////////////////////////////////////////
 app.get('/css/base.css', (req, res) => {
 	res.render('base.css');
 });
