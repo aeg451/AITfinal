@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 *.swp
 config.json
+cookie-parser
+express-validator
