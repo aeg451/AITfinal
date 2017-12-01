@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const connectFlash = require('connect-flash');
@@ -20,7 +20,7 @@ app.set('view engine', 'hbs');
 //Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
-//app.use(cookieParser());
+app.use(cookieParser());
 
 //Set statuc folder
 app.use(express.static(path.join(__dirname, 'public')));
