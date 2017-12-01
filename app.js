@@ -3,10 +3,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const connectFlash = require('connect-flash');
 const expressSession = require('express-session');
-const expressValidator = require('express-validator');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/passport', { useMongoClient: true});
 
