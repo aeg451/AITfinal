@@ -1,25 +1,28 @@
 const mongoose = require('mongoose');
-const URLSlugs = require('mongoose-url-slugs');
-//const passportLocalMongoose = require('passport-local-mongoose');
+const bcrypt = require('bcryptjs');
+
 ///////////////////////////////////////////////////////////
 //User
 ///////////////////////////////////////////////////////////
-const User = new mongoose.Schema({
-  // username provided by authentication plugin
-  // password hash provided by authentication plugin
-  email: {type: String, unique: true, required: true},
-  Fullname: {type: String},
-  username: {type: String, unique: true},
-  password: {type: String},
-  lists:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'List' }]
+const UserSchema = mongoose.Schema({
+    name: {
+        type: String
+    },
+    username: {
+        type: String,
+        index: true
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    }
 });
-User.plugin(URLSlugs('username'));
-// var User = new mongoose.Schema({ });
-// User.plugin(passportLocalMongoose);
 ///////////////////////////////////////////////////////////
 //Log
 ///////////////////////////////////////////////////////////
-const Log = new mongoose.Schema({
+const LogSchema = new mongoose.Schema({
   date: {type: String, required: true},
   type: {type: String, required: true},
   description: {type: String, required: true},
@@ -30,11 +33,11 @@ const Log = new mongoose.Schema({
 }, {
   _id: true
 });
-Log.plugin(URLSlugs('date type description pace'));
+//Log.plugin(URLSlugs('date type'));
 ///////////////////////////////////////////////////////////
 //Race
 ///////////////////////////////////////////////////////////
-const Race = new mongoose.Schema({
+const RaceSchema = new mongoose.Schema({
   date: {type: String, required: true},
   distance: {type: String, required: true},
   time: {type: String, required: true},
@@ -43,29 +46,54 @@ const Race = new mongoose.Schema({
 }, {
   _id: true
 });
-Race.plugin(URLSlugs('date race time location'));
+//Race.plugin(URLSlugs('date race'));
 ///////////////////////////////////////////////////////////
 //List
 ///////////////////////////////////////////////////////////
-const List = new mongoose.Schema({
+const ListSchema = new mongoose.Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-  log: [Log],
-  race: [Race]
+  log: {type: [LogSchema], required: true},
+  race: {type: [RaceSchema], required: true}
 });
 ///////////////////////////////////////////////////////////
 //Models
 ///////////////////////////////////////////////////////////
-mongoose.model("User", User);
-mongoose.model("List", List);
-mongoose.model("Log", Log);
-mongoose.model("Race", Race);
+const List = module.exports = mongoose.model("List", ListSchema);
+const Log = module.exports = mongoose.model("Log", LogSchema);
+const Race = module.exports = mongoose.model("Race", RaceSchema);
+const User = module.exports = mongoose.model('User', UserSchema);
+///////////////////////////////////////////////////////////
+//User methods
+///////////////////////////////////////////////////////////
+module.exports.createUser = function(newUser, callback){
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(newUser.password, salt, function (err, hash) {
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });
+};
+
+module.exports.getUserByUsername = function(username, callback){
+    const query = {username: username};
+    User.findOne(query, callback);
+};
+
+module.exports.getUserById = function(id, callback){
+    User.findById(id, callback);
+};
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+    bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
+        if(err) throw err;
+        callback(null, isMatch);
+    });
+};
 ///////////////////////////////////////////////////////////
 //Config
 ///////////////////////////////////////////////////////////
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 if (process.env.NODE_ENV === 'PRODUCTION') {
- // if we're in PRODUCTION mode, then read the configration from a file
- // use blocking file io to do this...
  const fs = require('fs');
  const path = require('path');
  const fn = path.join(__dirname, 'config.json');

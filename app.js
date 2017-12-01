@@ -1,151 +1,82 @@
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const session = require('express-session');
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'public')));
-
-require('./db');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
+const connectFlash = require('connect-flash');
+const expressSession = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
-const Log = mongoose.model('Log');
-const Race = mongoose.model('Race');
-app.use(bodyParser.urlencoded({extended:false}));
+mongoose.connect('mongodb://localhost/passport', { useMongoClient: true});
+
+//Init app
+const app = express();
+
+//View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-const sessionOptions = {
-	secret: 'secret kitchen thang',
-	resave: true,
-	saveUninitialized: true
-};
-app.use(session(sessionOptions));
-///////////////////////////////////////////////////////////
-//INDEX
-///////////////////////////////////////////////////////////
-app.get('/', (req, res) => {
-	res.render('index');
-});
-///////////////////////////////////////////////////////////
-//CREATELOG
-///////////////////////////////////////////////////////////
-app.get('/createLog', (req, res) => {
-	res.render('createLog');
-});
+//Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(cookieParser());
 
-app.post('/createLog', function(req, res) {
-const newLog = new Log({
-		type: req.body.type,
-		description: req.body.description,
-		pace: req.body.pace,
-		goals: req.body.goals,
-		comments: req.body.comments,
-		location: req.body.location,
-		date: req.body.date
-});
-  newLog.save(function(err) {
-    if(err) {
-      console.log(err);
+//Set statuc folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Express Session
+app.use(expressSession({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave:true
+}));
+
+//Passport Init
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Express validator
+app.use(expressValidator({
+    errorFormatter: function (param, msg, value) {
+        const namespace = param.split('.')
+            , root = namespace.shift()
+            , formParam = root;
+        while(namespace.length){
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        };
     }
-    else {
-      res.redirect('/log');
-    }
-  });
-});
-///////////////////////////////////////////////////////////
-//CREATERACE
-///////////////////////////////////////////////////////////
-app.get('/createRace', (req, res) => {
-	res.render('createRace');
+}));
+
+//Connect flash
+app.use(connectFlash());
+
+//Global consts
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
+    res.locals.host = 'http://localhost:'+app.get('port');
+    next();
 });
 
-app.post('/createRace', function(req, res) {
-const newRace = new Race({
-		distance: req.body.distance,
-		time: req.body.time,
-		comments: req.body.comments,
-		location: req.body.location,
-		date: req.body.date
-});
-  newRace.save(function(err) {
-    if(err) {
-      console.log(err);
-    }
-    else {
-      res.redirect('/race');
-    }
-  });
-});
-///////////////////////////////////////////////////////////
-//RUNNING LOG
-///////////////////////////////////////////////////////////
-app.get('/log', (req, res) => {
-	Log.find({}, (err, log) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('log', {log: log});	
-	});
-});
+app.use('/', require('./routes/index'));
+app.use('/users', require('./routes/users'));
 
-app.post('/log', function(req, res) {
-	if(req.body.delete){
-		Log.findByIdAndRemove(req.body.id, (err) => {  
-			if(err){
-						console.log(err);
-					}
-	  	});		
-	}
-	res.redirect('/log');	
-});
+//Set Port
+app.set('port',3000);
 
-///////////////////////////////////////////////////////////
-//RACING LOG
-///////////////////////////////////////////////////////////
-app.get('/race', (req, res) => {
-	Race.find({}, (err, race) => {
-		if(err){
-			console.log(err);
-		}
-		res.render('race', {race: race});	
-	});
+mongoose.connection.on('error', function(err) {
+    console.log('Mongodb is not running.');
+    process.exit();
+}).on('connected', function() {
+    app.listen(app.get('port'), function() {
+        console.log('Server started at : http://localhost:' + app.get('port'));
+    });
 });
-
-app.post('/race', function(req, res) {
-	if(req.body.delete){
-		Race.findByIdAndRemove(req.body.id, (err) => {  
-			if(err){
-						console.log(err);
-					}
-	  	});		
-	}
-	res.redirect('/race');	
-});
-///////////////////////////////////////////////////////////
-//SLUGS
-///////////////////////////////////////////////////////////
-// app.get('/log/:slug', function(req, res){
-//   Log.findOne({slug: req.params.slug}, function(err, log){
-// 		if(err){
-// 			console.log(err);
-// 		}
-// 		res.render('log', {log: log});
-// 	});
-// });
-
-// app.get('/race/:slug', function(req, res){
-//   Race.findOne({slug: req.params.slug}, function(err, race){
-// 		if(err){
-// 			console.log(err);
-// 		}
-// 		res.render('race', {race: race});
-// 	});
-// });
-///////////////////////////////////////////////////////////
-//CSS
-///////////////////////////////////////////////////////////
-app.get('/css/base.css', (req, res) => {
-	res.render('base.css');
-});
-
-app.listen(process.env.PORT || 3000);
