@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 //const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const expressValidator = require('express-validator');
+//const expressValidator = require('express-validator');
 const connectFlash = require('connect-flash');
 const expressSession = require('express-session');
 const passport = require('passport');
@@ -37,21 +37,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Express validator
-app.use(expressValidator({
-    errorFormatter: function (param, msg, value) {
-        const namespace = param.split('.')
-            , root = namespace.shift()
-            , formParam = root;
-        while(namespace.length){
-            formParam += '[' + namespace.shift() + ']';
-        }
-        return {
-            param: formParam,
-            msg: msg,
-            value: value
-        };
-    }
-}));
+// app.use(expressValidator({
+//     errorFormatter: function (param, msg, value) {
+//         const namespace = param.split('.')
+//             , root = namespace.shift()
+//             , formParam = root;
+//         while(namespace.length){
+//             formParam += '[' + namespace.shift() + ']';
+//         }
+//         return {
+//             param: formParam,
+//             msg: msg,
+//             value: value
+//         };
+//     }
+// }));
 
 //Connect flash
 app.use(connectFlash());
