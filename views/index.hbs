@@ -1,11 +1,33 @@
+<nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+           <li><a href='/log'>View Running Log</a></li>
+            <li><a href='/race'>View Racing Logs</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href='/createLog'>Log New Run</a></li>
+                <li><a href='/createRace'>Log New Race</a></li>
+                <li  class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
             <br><br><br>
-            <h1><strong>Welcome {{user.name}}!</strong></h1>
-
-           <!-- <strong>Name: {{user.name}}</strong> | <strong>Username: {{user.username}}</strong> | <strong>Email: {{user.email}}</strong>-->
-
+              <h1><strong>Welcome!</strong></h1>
         </div>
     </div>
 </div>

@@ -1,9 +1,34 @@
-<center>
+<nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+           <li><a href='/log'>View Running Log</a></li>
+            <li><a href='/race'>View Racing Logs</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li><a href='/createLog'>Log New Run</a></li>
+                <li><a href='/createRace'>Log New Race</a></li>
+                <li  class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <center>
 <h1>Running Log</h1>
 <br><hr>
 <div>
 <form method="POST" action="">
-<table width ="45%">
+<table width ="55%">
 	<tr>
 		<td>
 			<fieldset>
@@ -26,13 +51,13 @@
 	</tr>
 	<tr><td><br></td></tr>
 	<tr>
-		<td><fieldset><label><b>Description:&nbsp;</b></label><input type='text' name='description' placeholder="description" value=''></td>
-		<td><label><b>Goals:&nbsp;</b></label><input type='text' name='goals' value=''placeholder="goals"></fieldset></td>
+		<td><fieldset><label><b>Goals:&nbsp;</b></label><input type='text' name='goals' value=''placeholder="goals"></td>
+		<td><label><b>Description:&nbsp;</b></label><input type='text' name='description' placeholder="description" value=''></fieldset></td>
 	</tr>
 	<tr><td><br></td></tr>
 	<tr>
-		<td><fieldset><label><b>Comments:&nbsp;</b></label><input type='text' name='comments' placeholder="comments" value=''></td>
-		<td><label><b>Location:&nbsp;</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
+		<td><fieldset><label><b>Location:&nbsp;</b></label><input type='text' name='location' value='' placeholder="location"></td>
+		<td><label><b>Comments:&nbsp;</b></label><input type='text' name='comments' placeholder="comments" value=''></fieldset></td>
 	</tr>
 	<tr><td><br></td></tr>
 	<tr>		
