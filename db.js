@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const URLSlugs = require('mongoose-url-slugs');
+URLSlugs = require('mongoose-url-slugs');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
-const passportLocalMongoose = require('passport-local-mongoose');
+passportLocalMongoose = require('passport-local-mongoose');
 ///////////////////////////////////////////////////////////
 //USER
 ///////////////////////////////////////////////////////////
