@@ -118,4 +118,4 @@ if (process.env.NODE_ENV == 'PRODUCTION') {
     // if we're not in PRODUCTION mode, then use
     dbconf = 'mongodb://localhost/project';
 }
-mongoose.connect(dbconf);
+mongoose.connect(dbconf ,{ useMongoClient: true});
