@@ -3,6 +3,7 @@ require('./db');
 const mongoose = require('mongoose');
 const Log = mongoose.model('Log');
 const Race = mongoose.model('Race');
+const Food = mongoose.model('Food');
 const User = mongoose.model('User');
 const app = express();
 
@@ -35,46 +36,47 @@ passport.deserializeUser(function(id, done){
 });
 passport.use('local-login', new LocalStrategy({
     passReqToCallback: true
-},
+    },
     function(req, username, password, done){
         User.findOne({'username':username}, function (err,user) {
             if(err) return done(err);
-            if(!user){
-                console.log('Please enter a valid username instead of '+username );
-                return done(null,false, req.flash('message','No user found.'));
-            }
-            if(!user.isValidPassword(password)) {
-                console.log('Invlaid password!');
-                return done(null, false, req.flash('message', 'Invalid password.'));
-            }
-            return done(null,user);
+                if(!user){
+                    console.log('Please enter a valid username instead of '+username );
+                    return done(null,false, req.flash('message','No user found.'));
+                }
+                if(!user.isValidPassword(password)) {
+                    console.log('Invlaid password!');
+                    return done(null, false, req.flash('message', 'Invalid password.'));
+                }
+                return done(null,user);
             }
         );
-}));
+    }
+));
 passport.use('local-signup', new LocalStrategy({
-        passReqToCallback: true
+    passReqToCallback: true
     },
     function(req, username, password, done){
-            process.nextTick(function(){
+        process.nextTick(function(){
             User.findOne({'username': username}, function (err, user) {
-                    if (err) {console.log('SignUp Error: '+err); return done(err);}
+                if (err) {console.log('SignUp Error: '+err); return done(err);}
                     if (user) {
                         console.log('User already exists');
                         return done(null, false, req.flash('message',"User already exists."));
-                    } else {
-
+                    } 
+                    else {
                         const newUser = new User()
                         newUser.username = username;
                         newUser.password = newUser.createHash(password);
                         newUser.save(function(err){
                             if(err) {console.log('Error: '+err); throw err;}
-                            console.log("SignUp Succeeded");
-                            return done(null,newUser);
+                                console.log("SignUp Succeeded");
+                                return done(null,newUser);
                         });
                     }
-                });
             });
-        }
+        });
+    }
 ));
 ///////////////////////////////////////////////////////////
 //LOGIN
@@ -83,9 +85,9 @@ app.get('/login', function(req,res){
     res.render('login', {'user':req.user});
 });
 app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash : true
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash : true
     })
 );
 ///////////////////////////////////////////////////////////
@@ -95,9 +97,9 @@ app.get('/signup', function(req,res){
     res.render('signup');
 });
 app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/login',
-        failureRedirect: '/signup',
-        failureFlash : true
+    successRedirect: '/login',
+    failureRedirect: '/signup',
+    failureFlash : true
     })
 );
 ///////////////////////////////////////////////////////////
@@ -105,7 +107,7 @@ app.post('/signup', passport.authenticate('local-signup', {
 ///////////////////////////////////////////////////////////
 app.get('/logout', function(req, res){
     const name = req.user.username;
-    console.log("LOGGIN OUT " + req.user.username)
+    console.log("LOGGIN OUT " + name)
     req.logout();
     res.redirect('/');
     req.session.notice = "You have successfully been logged out " + name + "!";
@@ -122,7 +124,8 @@ app.get('/', ensureAuthenticated, function (req, res) {
 function ensureAuthenticated(req, res, next) {
     if(req.isAuthenticated()){
         return next();
-    }else{
+    }
+    else{
         res.redirect('/login');
     }
 }
@@ -131,24 +134,23 @@ function ensureAuthenticated(req, res, next) {
 ///////////////////////////////////////////////////////////
 app.get('/log',ensureAuthenticated,function (req,res) {
     if(req.user) {
-        Log.find(function (err, log, count) {
+        Log.find({user: req.user._id}).exec(function (err, log, count) {
             res.render('log', {'log': log});
         });
     }
-    else
+    else{
         console.log("please login :)");
+    }
 });
 app.post('/log',function(req, res) {
     if(req.body.delete){
-        if(req.body.delete){
         Log.findByIdAndRemove(req.body.id, (err) => {  
             if(err){
-                        console.log(err);
-                    }
+                console.log(err);
+            }
         });     
     }
     res.redirect('/log');   
-    }
 });
 ///////////////////////////////////////////////////////////
 //CREATELOG
@@ -157,31 +159,32 @@ app.get('/createLog', ensureAuthenticated, function (req, res) {
     res.render('createLog');
 });
 app.post('/createLog', function (req, res) {
-const newLog = new Log({
-        type: req.body.type,
-        description: req.body.description,
-        pace: req.body.pace,
-        goals: req.body.goals,
-        comments: req.body.comments,
-        location: req.body.location,
-        date: req.body.date
-});
-  newLog.save(function(err) {
-    if(err) {
-      console.log(err);
-    }
-    else {
-      res.redirect('/log');
-    }
-  });
+    const newLog = new Log({
+            user: req.user._id,
+            type: req.body.type,
+            description: req.body.description,
+            pace: req.body.pace,
+            goals: req.body.goals,
+            comments: req.body.comments,
+            location: req.body.location,
+            date: req.body.date
+    });
+    newLog.save(function(err) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.redirect('/log');
+        }
+    });
 });
 ///////////////////////////////////////////////////////////
 //RACE
 ///////////////////////////////////////////////////////////
 app.get('/race',ensureAuthenticated,function (req, res) {
     if(req.user) {
-        Race.find(function (err, race, count) {
-            res.render('race', {'race': race});
+        Race.find({user: req.user._id}).exec(function (err, race, count) {
+             res.render('race', {'race': race});
         });
     }
     else
@@ -189,15 +192,13 @@ app.get('/race',ensureAuthenticated,function (req, res) {
 });
 app.post('/race',function(req, res) {
     if(req.body.delete){
-        if(req.body.delete){
         Race.findByIdAndRemove(req.body.id, (err) => {  
             if(err){
-                        console.log(err);
-                    }
+                console.log(err);
+            }
         });     
     }
     res.redirect('/race');   
-    }
 });
 ///////////////////////////////////////////////////////////
 //CREATERACE
@@ -206,21 +207,77 @@ app.get('/createRace', ensureAuthenticated, function (req, res) {
     res.render('createRace');
 });
 app.post('/createRace',ensureAuthenticated, function (req, res) {
-const newRace = new Race({
-        distance: req.body.distance,
-        time: req.body.time,
-        comments: req.body.comments,
-        location: req.body.location,
+    const newRace = new Race({
+            user: req.user._id,
+            distance: req.body.distance,
+            time: req.body.time,
+            comments: req.body.comments,
+            location: req.body.location,
+            date: req.body.date
+    });
+    newRace.save(function(err) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.redirect('/race');
+        }
+    });
+});
+///////////////////////////////////////////////////////////
+//FOOD
+///////////////////////////////////////////////////////////
+app.get('/food',ensureAuthenticated,function (req,res) {
+    if(req.user) {
+        Food.find({user: req.user._id}).exec(function (err, food, count) {
+             res.render('food', {'food': food});
+        });
+    }
+    else{
+        console.log("please login :)");
+    }
+});
+app.post('/food',function(req, res) {
+    if(req.body.delete){
+        Food.findByIdAndRemove(req.body.id, (err) => {  
+            if(err){
+                console.log(err);
+            }
+        });     
+    res.redirect('/food');   
+    }
+});
+///////////////////////////////////////////////////////////
+//CREATEFOOD
+///////////////////////////////////////////////////////////
+app.get('/createFood', ensureAuthenticated, function (req, res) {
+    res.render('createFood');
+});
+app.post('/createFood',ensureAuthenticated, function (req, res) {
+const newFood = new Food({
+        user: req.user._id,
+        breakfast: req.body.breakfast,
+        lunch: req.body.lunch,
+        dinner: req.body.dinner,
+        snack: req.body.snack,
+        other: req.body.other,
+        exercise: req.body.exercise,
         date: req.body.date
 });
-  newRace.save(function(err) {
-    if(err) {
-      console.log(err);
-    }
-    else {
-      res.redirect('/race');
-    }
-  });
+    newFood.save(function(err) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.redirect('/food');
+        }
+    });
+});
+///////////////////////////////////////////////////////////
+//CALCOUNT
+///////////////////////////////////////////////////////////
+app.get('/calCount', ensureAuthenticated, function (req, res) {
+    res.render('calCount');
 });
 ///////////////////////////////////////////////////////////
 //LISTEN

@@ -18,23 +18,36 @@
       </div>
     </nav>
 <center>
-<h2>Log Your Last Race</h2>
+<h2>Log Your Meals</h2>
 <br><hr>
 <div>
 <form method="POST" action="">
-<table width ="55%">
-  <tr>
-    <td><fieldset><label><b>Date:&nbsp;</b></label><input type='text' name='date' value=''placeholder="mm/dd/yyyy"></td>
-    <td><label><b>Distance:&nbsp;</b></label><input type='text' name='distance' value='' placeholder="distance"></fieldset></td>
+<table width ="40%">
+<tr>
+  <td>
+      <fieldset>
+      <label><b>Did you exercise today?</b></label><br>
+      <table width= "100%">
+      <tr><td><input type='radio' name='exercise' value='yes'><label>&nbsp;Yes</label></td>
+          <td><input type='radio' name='exercise' value='no'><label>&nbsp;No</label></td>
+      </tr>
+      </table>
+      </fieldset>
+</tr>
+<tr><td><br></td></tr>
+<tr>
+    <td><fieldset><label><b>Breakfast:&nbsp;</b></label><input type='text' name='breakfast' value='' placeholder="breakfast"></td>
+    <td><label><b>Lunch:&nbsp;</b></label><input type='text' name='lunch' value='' placeholder="lunch"></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Time:&nbsp;</b></label><input type='text' name='time' placeholder="time" value=''></td>
-    <td><label><b>Comments:&nbsp;</b></label><input type='text' name='comments' placeholder="comments" value=''></fieldset></td>
+    <td><fieldset><label><b>Dinner:&nbsp;</b></label><input type='text' name='dinner' value=''placeholder="dinner"></td>
+    <td><label><b>Snack:&nbsp;</b></label><input type='text' name='snack' placeholder="snack" value=''></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Location:&nbsp;</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
+    <td><fieldset><label><b>Date:&nbsp;</b></label><input type='text' name='date' value='' placeholder="mm/dd/yyyy"></td>
+    <td><label><b>Other:&nbsp;</b></label><input type='text' name='other' placeholder="other" value=''></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>    

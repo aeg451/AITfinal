@@ -19,7 +19,7 @@
     </nav>
 <div>
 <center>
-<h2>Racing Log</h2><br>
+<h2>Meal Log</h2><br>
 <div>
 <br><br>
 <table width = '90%'></center>
@@ -27,25 +27,31 @@
   <th></th>
   <th></th>
   <th>Date</th>
-  <th>Distance</th>
-  <th>Time</th>
-  <th>Comments</th>
-  <th>Location</th>
+  <th>Breakfast</th>
+  <th>Lunch</th>
+  <th>Dinner</th>
+  <th>Snack</th>
+  <th>Other</th>
+  <th>Exercised</th>
 </tr>
-<tr><td><br></td></tr>
-{{#each race as |raced|}}
+  <tr><td><br></td></tr>
+{{#each food as |foods|}}
 <form method='POST' action="">
   <tr>
     <td><input type='checkbox' name='delete' value='delete'></td>
-    <td><input type='submit' value='Delete'><input type='hidden' name='id' value='{{raced._id}}'</td>
-    <td>{{raced.date}}</td>
-    <td>{{raced.distance}}</td>
-    <td>{{raced.time}}</td>
-    <td>{{raced.comments}}</td>
-    <td>{{raced.location}}</td>
+    <td><input type='submit' value='Delete'>
+    <input type='hidden' name='id' value='{{foods._id}}'></td>
+    <td>{{foods.date}}</td>
+    <td>{{foods.breakfast}}</td>
+    <td>{{foods.lunch}}</td>
+    <td>{{foods.dinner}}</td>
+    <td>{{foods.snack}}</td>
+    <td>{{foods.other}}</td>
+    <td>{{foods.exercise}}</td>
   </tr>
   <tr><td><br></td></tr>
 </form>
 {{/each}}
 <center></table></center>
-</div>
+</div> 
+

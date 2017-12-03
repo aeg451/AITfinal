@@ -1,33 +1,33 @@
 <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-           <li><a href='/log'>View Running Log</a></li>
-            <li><a href='/race'>View Racing Logs</a></li>
+            <li class="active"><a href='/'>Home</a></li>
+            <li><a href='/log'>Running Log</a></li>
+            <li><a href='/createLog'>Log Runs</a></li>
+            <li><a href='/race'>Racing Log</a></li>
+            <li><a href='/createRace'>Log Races</a></li>
+            <li><a href='/food'>Meal Log</a></li>
+            <li><a href='/createfood'>Log Meals</a></li>
+            <li><a href='/calCount'>Calorie Calculator</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-                <li><a href='/createLog'>Log New Run</a></li>
-                <li><a href='/createRace'>Log New Race</a></li>
-                <li  class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          <ul class="nav navbar-nav navbar-right">   
+            <li class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
           </ul>
         </div>
       </div>
     </nav>
-
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
-            <br><br><br>
-              <h1><strong>Welcome!</strong></h1>
+              <h3>Welcome<br> to<br></h3><h2><b> Log My Runz</b></h2><br>
+              <div>
+              <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK" data-label_2="WEATHER" data-font="Open Sans" data-icons="Climacons Animated" data-theme="weather_one" >NEW YORK WEATHER</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://weatherwidget.io/js/widget.min.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","weatherwidget-io-js");
+</script></div>
+<br><br>
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://onthegomap.com/?m=r&amp;u=mi&amp;f=c41e59351a&amp;lat=40.697852&amp;lng=-73.979681&amp;zoom=10&amp;context=embed"></iframe><br/><small><a href="https://onthegomap.com" style="color:#0000FF;text-align:left" target="_blank">On The Go Map</a></small>
         </div>
     </div>
 </div>

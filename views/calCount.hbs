@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href='/'>Home</a></li>
+            <li><a href='/log'>Running Log</a></li>
+            <li><a href='/createLog'>Log Runs</a></li>
+            <li><a href='/race'>Racing Log</a></li>
+            <li><a href='/createRace'>Log Races</a></li>
+            <li><a href='/food'>Meal Log</a></li>
+            <li><a href='/createfood'>Log Meals</a></li>
+            <li><a href='/calCount'>Calorie Calculator</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">   
+            <li class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <center>
+    <h2>Fill out the form below.</h2>
+    <br><hr>
+    <div>
+    <label>Female:&nbsp;<input id="female" type="radio" name="gender" onchange="cals()"></label> 
+    <label>Male:&nbsp;<input id="male" type="radio" name="gender" onchange="cals()" checked>
+    </label> <br><hr>
+    <label>Age:&nbsp;<input id="age" type="number" oninput="cals()" value="50">&nbsp;years</label> <br><hr>
+    <label>Height:&nbsp;<input id="height" type="number" oninput="cals()" value="70">&nbsp;inches</label> <br><hr>
+    <label>Weight:&nbsp;<input id="weight" type="number" oninput="cals()" value="225">&nbsp;pounds</label> <br><hr>
+    <label onclick="cals">Base metabolic rate: <span id="totalCals"></span> kcal per day</label>
+    </div> </center>
+
+    <script>
+    function cals() {
+        let age = document.getElementById("age").value;
+        let height = document.getElementById("height").value * 2.54;
+        let weight = document.getElementById("weight").value / 2.2;
+        let result = 0;
+        if (document.getElementById("male").checked){
+            result = 66.47 + (13.75 * weight) + (5.0 * height - (6.75 * age));
+        }
+        else if (document.getElementById("female").checked){
+            result = 665.09 + (9.56 * weight) + (1.84 * height - (4.67 * age));
+        }
+        document.getElementById("totalCals").innerHTML = Math.round(result);
+    }
+    cals()
+    </script>

@@ -1,25 +1,28 @@
 const mongoose = require('mongoose');
-//URLSlugs = require('mongoose-url-slugs');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 passportLocalMongoose = require('passport-local-mongoose');
 ///////////////////////////////////////////////////////////
 //USER
 ///////////////////////////////////////////////////////////
-const User = new Schema({
-    race:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Log' }],
-    log:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Race' }],
+const UserSchema = new Schema({
     username: String,
     password: String
 });
 ///////////////////////////////////////////////////////////
+//BCRYPT
+///////////////////////////////////////////////////////////
+UserSchema.methods.isValidPassword = function(password){
+    return bcrypt.compareSync(password,this.password);
+}
+UserSchema.methods.createHash = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+}
+///////////////////////////////////////////////////////////
 //LOG
 ///////////////////////////////////////////////////////////
-const Log = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'User'
-  },
+const LogSchema = new mongoose.Schema({
+  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   date: {
     type: String, 
     required: true
@@ -54,11 +57,8 @@ const Log = new mongoose.Schema({
 ///////////////////////////////////////////////////////////
 //RACE
 ///////////////////////////////////////////////////////////
-const Race = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'User'
-  },
+const RaceSchema = new mongoose.Schema({
+  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   date: {
     type: String, 
     required: true
@@ -82,22 +82,49 @@ const Race = new mongoose.Schema({
 }, {
   _id: true
 });
-//RaceSchema.plugin(URLSlugs('date race'));
 ///////////////////////////////////////////////////////////
-//BCRYPT
+//FOOD
 ///////////////////////////////////////////////////////////
-User.methods.isValidPassword = function(password){
-    return bcrypt.compareSync(password,this.password);
-}
-User.methods.createHash = function(password){
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-}
+const FoodSchema = new mongoose.Schema({
+  user: [{ type:  Schema.Types.ObjectId, ref: 'User' }],
+  date: {
+    type: String, 
+    required: true
+  },
+  breakfast: {
+    type: String, 
+    required: true
+  },
+  lunch: {
+    type: String, 
+    required: true
+  },
+  dinner: {
+    type: String, 
+    required: true
+  },
+  snack: {
+    type: String, 
+    required: true
+  },
+  other: {
+    type: String, 
+    required: true
+  },
+  exercise: {
+    type: String, 
+    required: true
+  }
+}, {
+  _id: true
+});
 ///////////////////////////////////////////////////////////
 //MODELS
 ///////////////////////////////////////////////////////////
-mongoose.model('Log', Log);
-mongoose.model('Race', Race);
-mongoose.model('User', User);
+const User = mongoose.model('User', UserSchema);
+const Log = mongoose.model('Log', LogSchema);
+const Race = mongoose.model('Race', RaceSchema);
+const Food = mongoose.model('Food', FoodSchema);
 ///////////////////////////////////////////////////////////
 //CONNECTING
 ///////////////////////////////////////////////////////////
