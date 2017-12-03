@@ -154,7 +154,7 @@ if (process.env.NODE_ENV == 'PRODUCTION') {
     // our configuration file will be in json, so parse it and set the
     // connection string appropriately!
     const conf = JSON.parse(data);
-    const dbconf = conf.dbconf;
+    var dbconf = conf.dbconf;
 } else {
     // if we're not in PRODUCTION mode, then use
     dbconf = 'mongodb://localhost/project';
