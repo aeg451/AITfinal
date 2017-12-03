@@ -7,25 +7,35 @@ const Food = mongoose.model('Food');
 const User = mongoose.model('User');
 const app = express();
 
+//bodyParser
 const bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 
+//serving static files
 const path = require('path');
 const publicPath = path.resolve(__dirname,'public');
 app.use(express.static('public'));
 
+
+//use passort for user sign in
+
+
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy;
 const flash = require("connect-flash");
 const expressSession = require('express-session');
+
 app.use(expressSession({secret: 'mySecret', resave:'false', saveUninitialized:'false'}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'hbs');
-///////////////////////////////////////////////////////////
-//PASSPORT
-///////////////////////////////////////////////////////////
+/*
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+*/
+
 passport.serializeUser(function(user,done){
     done(null,user._id);
 });
@@ -34,50 +44,65 @@ passport.deserializeUser(function(id, done){
         done(err,user);
     });
 });
+
+
+
+
 passport.use('local-login', new LocalStrategy({
     passReqToCallback: true
-    },
+},
     function(req, username, password, done){
+
         User.findOne({'username':username}, function (err,user) {
             if(err) return done(err);
-                if(!user){
-                    console.log('Please enter a valid username instead of '+username );
-                    return done(null,false, req.flash('message','No user found.'));
-                }
-                if(!user.isValidPassword(password)) {
-                    console.log('Invlaid password!');
-                    return done(null, false, req.flash('message', 'Invalid password.'));
-                }
-                return done(null,user);
+            if(!user){
+                console.log('Please enter a valid username instead of '+username );
+                return done(null,false, req.flash('message','No user found.'));
+            }
+            if(!user.isValidPassword(password)) {
+                console.log('Invlaid password!');
+                return done(null, false, req.flash('message', 'Invalid password.'));
+            }
+
+            return done(null,user);
             }
         );
-    }
-));
+
+}));
+
 passport.use('local-signup', new LocalStrategy({
-    passReqToCallback: true
+        passReqToCallback: true
     },
     function(req, username, password, done){
-        process.nextTick(function(){
+            process.nextTick(function(){
+
             User.findOne({'username': username}, function (err, user) {
-                if (err) {console.log('SignUp Error: '+err); return done(err);}
+                    if (err) {console.log('SignUp Error: '+err); return done(err);}
                     if (user) {
                         console.log('User already exists');
                         return done(null, false, req.flash('message',"User already exists."));
-                    } 
-                    else {
-                        const newUser = new User()
+                    } else {
+
+                        var newUser = new User()
+
                         newUser.username = username;
                         newUser.password = newUser.createHash(password);
+
                         newUser.save(function(err){
                             if(err) {console.log('Error: '+err); throw err;}
-                                console.log("SignUp Succeeded");
-                                return done(null,newUser);
+                            console.log("SignUp Succeeded");
+                            return done(null,newUser);
                         });
+
                     }
+
+
+                });
+
             });
-        });
     }
 ));
+
 ///////////////////////////////////////////////////////////
 //LOGIN
 ///////////////////////////////////////////////////////////
@@ -90,6 +115,18 @@ app.post('/login', passport.authenticate('local-login', {
     failureFlash : true
     })
 );
+/*
+req.login(user, function(err){
+    if(err){return next(err);}
+    return res.redirect('/users/'+req.user.username);
+});
+*/
+///////////////////////////////////////////////////////////
+//INDEX
+///////////////////////////////////////////////////////////
+app.get('/', ensureAuthenticated, function (req, res) {
+    res.render('index');
+});
 ///////////////////////////////////////////////////////////
 //SIGNUP
 ///////////////////////////////////////////////////////////
@@ -112,12 +149,10 @@ app.get('/logout', function(req, res){
     res.redirect('/');
     req.session.notice = "You have successfully been logged out " + name + "!";
 });
-///////////////////////////////////////////////////////////
-//INDEX
-///////////////////////////////////////////////////////////
-app.get('/', ensureAuthenticated, function (req, res) {
-    res.render('index');
-});
+
+/*Reference:
+http://passportjs.org/docs/configure
+* */
 ///////////////////////////////////////////////////////////
 //VALIDATE AUTHENTICATION
 ///////////////////////////////////////////////////////////
@@ -283,3 +318,5 @@ app.get('/calCount', ensureAuthenticated, function (req, res) {
 //LISTEN
 ///////////////////////////////////////////////////////////
 app.listen(process.env.PORT||3000);
+
+
