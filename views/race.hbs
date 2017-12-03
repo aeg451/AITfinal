@@ -22,8 +22,8 @@
 <h2>Racing Log</h2><br>
 <div>
 <br><br>
-<table width = '90%'></center>
-<tr>
+<table width = '90%' class="table table-bordered table-hover"></center>
+<tr class="active">
   <th></th>
   <th></th>
   <th>Date</th>
@@ -32,7 +32,6 @@
   <th>Comments</th>
   <th>Location</th>
 </tr>
-<tr><td><br></td></tr>
 {{#each race as |raced|}}
 <form method='POST' action="">
   <tr>
@@ -44,7 +43,6 @@
     <td>{{raced.comments}}</td>
     <td>{{raced.location}}</td>
   </tr>
-  <tr><td><br></td></tr>
 </form>
 {{/each}}
 <center></table></center>

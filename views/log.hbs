@@ -2,28 +2,25 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href='/'>Home</a></li>
-            <li><a href='/log'>Running Log</a></li>
-            <li><a href='/createLog'>Log Runs</a></li>
-            <li><a href='/race'>Racing Log</a></li>
-            <li><a href='/createRace'>Log Races</a></li>
-            <li><a href='/food'>Meal Log</a></li>
-            <li><a href='/createfood'>Log Meals</a></li>
-            <li><a href='/calCount'>Calorie Calculator</a></li>
+            <li class="active"><a href='/'><u><b>Home</b></u></a></li>
+            <li><a href='/log'><u><b>My Running Log</b></u></a></li>
+            <li><a href='/createLog'><u><b>Create Run Log</b></u></a></li>
+            <li><a href='/race'><u><b>My Racing Log</b></u></a></li>
+            <li><a href='/createRace'><u><b>Create Race Log</b></u></a></li>
+            <li><a href='/food'><u><b>My Meal Log</b></u></a></li>
+            <li><a href='/createfood'><u><b>Create Meal Log</b></u></a></li>
+            <li><a href='/calCount'><u><b>Calorie Calculator</b></u></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">   
-            <li class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          <li class="active"><a href="/logout"><u><b>Logout</b></u><span class="sr-only"></span></a></li>
           </ul>
         </div>
       </div>
     </nav>
-<div>
-<center>
-<h2>Running Log</h2><br>
-<div>
-<br><br>
-<table width = '90%'></center>
-<tr>
+<center><h2><u><b>Running Log</u></b></h2><br></center>
+<div><center>
+<table width = '90%' class="table table-bordered table-hover"></center>
+<tr class="active">
   <th></th>
   <th></th>
   <th>Date</th>
@@ -34,7 +31,6 @@
   <th>Comments</th>
   <th>Location</th>
 </tr>
-  <tr><td><br></td></tr>
 {{#each log as |logged|}}
 <form method='POST' action="">
   <tr>
@@ -49,7 +45,6 @@
     <td>{{logged.comments}}</td>
     <td>{{logged.location}}</td>
   </tr>
-  <tr><td><br></td></tr>
 </form>
 {{/each}}
 <center></table></center>
