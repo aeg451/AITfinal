@@ -1,28 +1,47 @@
+
 const mongoose = require('mongoose');
+//URLSlugs = require('mongoose-url-slugs');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 passportLocalMongoose = require('passport-local-mongoose');
-///////////////////////////////////////////////////////////
-//USER
-///////////////////////////////////////////////////////////
+
+// users
+// * our site requires authentication...
+// * so users have a username and password
+// * they also can have 0 or more lists
+
 const UserSchema = new Schema({
+    // username, password provided by plugin
+    //race: [RaceSchema],
+    //log: [LogSchema],
+    //race:  [{ type: String, ref: 'Race' }],
+    //log:  [{ type: String, ref: "Log" }],
     username: String,
     password: String
 });
-///////////////////////////////////////////////////////////
-//BCRYPT
-///////////////////////////////////////////////////////////
+ /*
+const User = new Schema({ });
+User.plugin(passportLocalMongoose);
+*/
 UserSchema.methods.isValidPassword = function(password){
     return bcrypt.compareSync(password,this.password);
 }
+
 UserSchema.methods.createHash = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
+
+const User = mongoose.model('User', UserSchema);
 ///////////////////////////////////////////////////////////
-//LOG
+//Log
 ///////////////////////////////////////////////////////////
 const LogSchema = new mongoose.Schema({
-  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  // user: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref:'User'
+  // },
+  // //user: Schema.ObjectId,
+  user: [{ type:  Schema.Types.ObjectId, ref: 'User' }],
   date: {
     type: String, 
     required: true
@@ -54,11 +73,12 @@ const LogSchema = new mongoose.Schema({
 }, {
   _id: true
 });
+const Log = mongoose.model('Log', LogSchema);
 ///////////////////////////////////////////////////////////
-//RACE
+//Race
 ///////////////////////////////////////////////////////////
 const RaceSchema = new mongoose.Schema({
-  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  user: [{ type:  Schema.Types.ObjectId, ref: 'User' }],
   date: {
     type: String, 
     required: true
@@ -82,6 +102,8 @@ const RaceSchema = new mongoose.Schema({
 }, {
   _id: true
 });
+//RaceSchema.plugin(URLSlugs('date race'));
+const Race = mongoose.model('Race', RaceSchema);
 ///////////////////////////////////////////////////////////
 //FOOD
 ///////////////////////////////////////////////////////////
@@ -118,16 +140,8 @@ const FoodSchema = new mongoose.Schema({
 }, {
   _id: true
 });
-///////////////////////////////////////////////////////////
-//MODELS
-///////////////////////////////////////////////////////////
-const User = mongoose.model('User', UserSchema);
-const Log = mongoose.model('Log', LogSchema);
-const Race = mongoose.model('Race', RaceSchema);
 const Food = mongoose.model('Food', FoodSchema);
-///////////////////////////////////////////////////////////
-//CONNECTING
-///////////////////////////////////////////////////////////
+
 // is the environment constiable, NODE_ENV, set to PRODUCTION?
 if (process.env.NODE_ENV == 'PRODUCTION') {
     // if we're in PRODUCTION mode, then read the configration from a file
@@ -140,9 +154,13 @@ if (process.env.NODE_ENV == 'PRODUCTION') {
     // our configuration file will be in json, so parse it and set the
     // connection string appropriately!
     const conf = JSON.parse(data);
-    var dbconf = conf.dbconf;
+    const dbconf = conf.dbconf;
 } else {
     // if we're not in PRODUCTION mode, then use
     dbconf = 'mongodb://localhost/project';
 }
-mongoose.connect(dbconf ,{ useMongoClient: true});
+mongoose.connect(dbconf);
+
+
+//local testing
+//mongoose.connect('mongodb://localhost/project');

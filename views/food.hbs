@@ -22,8 +22,8 @@
 <h2>Meal Log</h2><br>
 <div>
 <br><br>
-<table width = '90%' class="table table-bordered table-hover"></center>
-<tr class="active">
+<table width = '90%'></center>
+<tr>
   <th></th>
   <th></th>
   <th>Date</th>
@@ -34,6 +34,7 @@
   <th>Other</th>
   <th>Exercised</th>
 </tr>
+  <tr><td><br></td></tr>
 {{#each food as |foods|}}
 <form method='POST' action="">
   <tr>
@@ -48,6 +49,7 @@
     <td>{{foods.other}}</td>
     <td>{{foods.exercise}}</td>
   </tr>
+  <tr><td><br></td></tr>
 </form>
 {{/each}}
 <center></table></center>

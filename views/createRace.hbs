@@ -1,21 +1,30 @@
 <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href='/'>Home</a></li>
-            <li><a href='/log'>Running Log</a></li>
+           <li><a href='/'>Home</a></li>
+           <li><a href='/log'>Running Log</a></li>
             <li><a href='/createLog'>Log Runs</a></li>
-            <li><a href='/race'>Racing Log</a></li>
-            <li><a href='/createRace'>Log Races</a></li>
+           <li><a href='/race'>Racing Log</a></li>
+           <li><a href='/createRace'>Log Races</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">   
             <li><a href='/food'>Meal Log</a></li>
             <li><a href='/createfood'>Log Meals</a></li>
             <li><a href='/calCount'>Calorie Calculator</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">   
             <li class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
           </ul>
-        </div>
-      </div>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
     </nav>
 <center>
 <h2>Log Your Last Race</h2>
@@ -23,22 +32,22 @@
 <div>
 <form method="POST" action="">
 <table width ="55%">
-  <tr>
-    <td><fieldset><label><b>Date:&nbsp;</b></label><input type='text' name='date' value=''placeholder="mm/dd/yyyy"></td>
-    <td><label><b>Distance:&nbsp;</b></label><input type='text' name='distance' value='' placeholder="distance"></fieldset></td>
-  </tr>
-  <tr><td><br></td></tr>
-  <tr>
-    <td><fieldset><label><b>Time:&nbsp;</b></label><input type='text' name='time' placeholder="time" value=''></td>
+	<tr>
+		<td><fieldset><label><b>Date:&nbsp;</b></label><input type='text' name='date' value=''placeholder="mm/dd/yyyy"></td>
+		<td><label><b>Distance:&nbsp;</b></label><input type='text' name='distance' value='' placeholder="distance"></fieldset></td>
+	</tr>
+	<tr><td><br></td></tr>
+	<tr>
+		<td><fieldset><label><b>Time:&nbsp;</b></label><input type='text' name='time' placeholder="time" value=''></td>
     <td><label><b>Comments:&nbsp;</b></label><input type='text' name='comments' placeholder="comments" value=''></fieldset></td>
-  </tr>
-  <tr><td><br></td></tr>
-  <tr>
-    <td><fieldset><label><b>Location:&nbsp;</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
-  </tr>
-  <tr><td><br></td></tr>
-  <tr>    
-  <td><fieldset><input type='submit' value='Post'></fieldset></td></tr>
-  </table>
+	</tr>
+	<tr><td><br></td></tr>
+	<tr>
+		<td><fieldset><label><b>Location:&nbsp;</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
+	</tr>
+	<tr><td><br></td></tr>
+	<tr>		
+	<td><fieldset><input type='submit' value='Post'></fieldset></td></tr>
+	</table>
 </form>
 </div><hr><br><br></center>
