@@ -1,22 +1,43 @@
-<nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href='/'><u><b>Home</b></u></a></li>
-            <li><a href='/log'><u><b>My Running Log</b></u></a></li>
-            <li><a href='/createLog'><u><b>Create Run Log</b></u></a></li>
-            <li><a href='/race'><u><b>My Racing Log</b></u></a></li>
-            <li><a href='/createRace'><u><b>Create Race Log</b></u></a></li>
-            <li><a href='/food'><u><b>My Meal Log</b></u></a></li>
-            <li><a href='/createfood'><u><b>Create Meal Log</b></u></a></li>
-            <li><a href='/calCount'><u><b>Calorie Calculator</b></u></a></li>
+<nav class="navbar fixed-top navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Log My Runz</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Running Log<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/log">View Logs</a></li>
+            <li><a href="/createLog">Create Log</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">   
-          <li class="active"><a href="/logout"><u><b>Logout</b></u><span class="sr-only"></span></a></li>
+        </li>
+           <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Racing Log<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/race">View Logs</a></li>
+            <li><a href="/createRace">Create Log</a></li>
           </ul>
-        </div>
-      </div>
-    </nav>
+        </li>
+           <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Meal Log<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/food">View Logs</a></li>
+            <li><a href="/createFood">Create Log</a></li>
+          </ul>
+        </li>
+        <li><a href="/calCount">Calorie Calculator</a></li>
+         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
     <center>
     <h3><u><b>How Many Calories Should You Consume?</b></u></h3>
     <hr>
@@ -31,7 +52,7 @@
     
     <label>Weight (lbs):&nbsp;</label><input style="max-width: 6em;" class="form-control" id="weight" type="number" oninput="cals()" value="225"><br><hr>
    <h3> <label onclick="cals">Base metabolic rate: <span id="totalCals"></span> kcal per day</label></h3>
-    </div> </center>
+    </div> </center></div>
 
     <script>
     function cals() {

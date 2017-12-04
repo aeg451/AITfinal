@@ -1,9 +1,28 @@
 body {
- padding: 45px 25px;
- font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+ font: 20px Montserrat, sans-serif;
  background: #99D3Df;
  color: #192231;
+ font-size: 12px;
+ letter-spacing: 0.25px;
 }
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 13px;
+      letter-spacing: 3px;
+  }
+  .dropdown-menu{
+  	 font-size: 12px;
+     letter-spacing: 2px;
+  }
+  .navbar-brand{
+  font-size: 16px;}
+  .navbar-nav  li a:hover {
+      color: #99D3Df !important;
+  }
 
 a {
   color: #E9E9E9;
@@ -12,20 +31,29 @@ a {
 footer{
 	color: #CDCDCD;
 	background: #192231;
-	position:fixed;
+		position:fixed;
 	right: 0;
   bottom: 0;
   left: 0;
   padding: 1rem;
 }
 
-nav{
-	color: #88BBD6;
-	background: #CDCDCD;
+.table-head{
+	background: #192231 ;
+	color: #CDCDCD;
+}
+.table-bordered > tbody > tr > td{
+	border-color: #192231;
+	color: #192231;
 }
 
-#table-entries{
+table{
+	background: #eeeeee;
 
+}
+.table-hover{
+	background: #DEDEDE;
+}
 
 
 /*
