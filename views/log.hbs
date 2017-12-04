@@ -22,27 +22,24 @@
 <table width = '90%' class="table table-bordered table-hover"></center>
 <tr class="active">
   <th></th>
-  <th></th>
   <th>Date</th>
   <th>Type</th>
-  <th>Description</th>
+  <th>Distance</th>
   <th>Pace</th>
-  <th>Goals</th>
-  <th>Comments</th>
+  <th>Splits</th>
+  <th>Notes</th>
   <th>Location</th>
 </tr>
 {{#each log as |logged|}}
 <form method='POST' action="">
   <tr>
-    <td><input type='checkbox' name='delete' value='delete'></td>
-    <td><input type='submit' value='Delete'>
-    <input type='hidden' name='id' value='{{logged._id}}'></td>
+    <td><input type='checkbox' name='delete' value='delete'>&nbsp;&nbsp;<input type='submit' value='Delete'><input type='hidden' name='id' value='{{logged._id}}'></td>
     <td>{{logged.date}}</td>
     <td>{{logged.type}}</td>
-    <td>{{logged.description}}</td>
+    <td>{{logged.distance}}</td>
     <td>{{logged.pace}}</td>
-    <td>{{logged.goals}}</td>
-    <td>{{logged.comments}}</td>
+    <td>{{logged.splits}}</td>
+    <td>{{logged.notes}}</td>
     <td>{{logged.location}}</td>
   </tr>
 </form>

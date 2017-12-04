@@ -19,7 +19,9 @@ UserSchema.methods.createHash = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
 ///////////////////////////////////////////////////////////
-//LOG
+//LOG Log: -distance ,type:crosstraining splits
+
+//Race: pace meet. distance/event
 ///////////////////////////////////////////////////////////
 const LogSchema = new mongoose.Schema({
   user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
@@ -31,7 +33,7 @@ const LogSchema = new mongoose.Schema({
     type: String, 
     required: true
   },
-  description: {
+  distance: {
     type: String, 
     required: true
   },
@@ -39,13 +41,11 @@ const LogSchema = new mongoose.Schema({
     type: String, 
     required: true
   },
-  goals: {
+  splits: {
     type: String, 
-    required: true
   },
-  comments: {
+  notes: {
     type: String, 
-    required: true
   },
   location: {
     type: String, 
@@ -63,7 +63,7 @@ const RaceSchema = new mongoose.Schema({
     type: String, 
     required: true
   },
-  distance: {
+  events: {
     type: String, 
     required: true
   },
@@ -71,7 +71,13 @@ const RaceSchema = new mongoose.Schema({
     type: String, 
     required: true
   },
-  comments: {
+  pace: {
+    type: String, 
+  },
+  notes: {
+    type: String, 
+  },
+  meet: {
     type: String, 
     required: true
   },
@@ -93,23 +99,18 @@ const FoodSchema = new mongoose.Schema({
   },
   breakfast: {
     type: String, 
-    required: true
   },
   lunch: {
     type: String, 
-    required: true
   },
   dinner: {
     type: String, 
-    required: true
   },
   snack: {
     type: String, 
-    required: true
   },
   other: {
     type: String, 
-    required: true
   },
   exercise: {
     type: String, 

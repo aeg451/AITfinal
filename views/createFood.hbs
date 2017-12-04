@@ -2,56 +2,56 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href='/'>Home</a></li>
-            <li><a href='/log'>Running Log</a></li>
-            <li><a href='/createLog'>Log Runs</a></li>
-            <li><a href='/race'>Racing Log</a></li>
-            <li><a href='/createRace'>Log Races</a></li>
-            <li><a href='/food'>Meal Log</a></li>
-            <li><a href='/createfood'>Log Meals</a></li>
-            <li><a href='/calCount'>Calorie Calculator</a></li>
+            <li class="active"><a href='/'><u><b>Home</b></u></a></li>
+            <li><a href='/log'><u><b>My Running Log</b></u></a></li>
+            <li><a href='/createLog'><u><b>Create Run Log</b></u></a></li>
+            <li><a href='/race'><u><b>My Racing Log</b></u></a></li>
+            <li><a href='/createRace'><u><b>Create Race Log</b></u></a></li>
+            <li><a href='/food'><u><b>My Meal Log</b></u></a></li>
+            <li><a href='/createfood'><u><b>Create Meal Log</b></u></a></li>
+            <li><a href='/calCount'><u><b>Calorie Calculator</b></u></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">   
-            <li class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          <li class="active"><a href="/logout"><u><b>Logout</b></u><span class="sr-only"></span></a></li>
           </ul>
         </div>
       </div>
     </nav>
 <center>
-<h2>Log Your Meals</h2>
-<br><hr>
+<h2><u><b>Log Your Meals</b></u></h2>
+<hr>
 <div>
 <form method="POST" action="">
-<table width ="40%">
+<table width ="60%">
 <tr>
   <td>
       <fieldset>
       <label><b>Did you exercise today?</b></label><br>
-      <table width= "100%">
-      <tr><td><input type='radio' name='exercise' value='yes'><label>&nbsp;Yes</label></td>
-          <td><input type='radio' name='exercise' value='no'><label>&nbsp;No</label></td>
+      <table width= "50%">
+      <tr><td><input type='radio' name='exercise' value='yes' required><label>&nbsp;Yes</label></td>
+      <td><input type='radio' name='exercise' value='no'><label>&nbsp;No</label></td>
       </tr>
       </table>
       </fieldset>
 </tr>
 <tr><td><br></td></tr>
 <tr>
-    <td><fieldset><label><b>Breakfast:&nbsp;</b></label><input type='text' name='breakfast' value='' placeholder="breakfast"></td>
-    <td><label><b>Lunch:&nbsp;</b></label><input type='text' name='lunch' value='' placeholder="lunch"></fieldset></td>
+    <td><fieldset><label><b>Breakfast:&nbsp;</b></label><textarea cols="40" type='text' name='breakfast' value=''placeholder="breakfast" class="form-control"></textarea></td>
+    <td><label><b>Lunch:&nbsp;</b></label><textarea cols="40" type='text' name='lunch' value='' placeholder="lunch" class="form-control" ></textarea></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Dinner:&nbsp;</b></label><input type='text' name='dinner' value=''placeholder="dinner"></td>
-    <td><label><b>Snack:&nbsp;</b></label><input type='text' name='snack' placeholder="snack" value=''></fieldset></td>
+    <td><fieldset><label><b>Dinner:&nbsp;</b></label><textarea cols="40" type='text' name='dinner' value=''placeholder="dinner" class="form-control"></textarea></td>
+    <td><label><b>Snack:&nbsp;</b></label><textarea cols="40" type='text' name='snack' placeholder="snack" value='' class="form-control"></textarea></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Date:&nbsp;</b></label><input type='text' name='date' value='' placeholder="mm/dd/yyyy"></td>
-    <td><label><b>Other:&nbsp;</b></label><input type='text' name='other' placeholder="other" value=''></fieldset></td>
+    <td><fieldset><label><b>Date:&nbsp;</b></label><textarea cols="40"  type='text' name='date' value='' placeholder="mm/dd/yyyy" class="form-control" required></textarea></td>
+    <td><label><b>Other:&nbsp;</b></label><textarea cols="40" type='text' name='other' placeholder="other" value='' class="form-control"></textarea></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>    
-  <td><fieldset><input type='submit' value='Post'></fieldset></td></tr>
+  <td><fieldset><input type='submit' value='Post' class="btn btn-default"></fieldset></td></tr>
   </table>
 </form>
 </div><hr><br><br></center>

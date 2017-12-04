@@ -197,10 +197,10 @@ app.post('/createLog', function (req, res) {
     const newLog = new Log({
             user: req.user._id,
             type: req.body.type,
-            description: req.body.description,
+            distance: req.body.distance,
             pace: req.body.pace,
-            goals: req.body.goals,
-            comments: req.body.comments,
+            splits: req.body.splits,
+            notes: req.body.notes,
             location: req.body.location,
             date: req.body.date
     });
@@ -244,9 +244,11 @@ app.get('/createRace', ensureAuthenticated, function (req, res) {
 app.post('/createRace',ensureAuthenticated, function (req, res) {
     const newRace = new Race({
             user: req.user._id,
-            distance: req.body.distance,
+            events: req.body.events,
             time: req.body.time,
-            comments: req.body.comments,
+            pace: req.body.pace,
+            notes: req.body.notes,
+            meet: req.body.meet,
             location: req.body.location,
             date: req.body.date
     });

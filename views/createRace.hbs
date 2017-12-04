@@ -2,43 +2,51 @@
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href='/'>Home</a></li>
-            <li><a href='/log'>Running Log</a></li>
-            <li><a href='/createLog'>Log Runs</a></li>
-            <li><a href='/race'>Racing Log</a></li>
-            <li><a href='/createRace'>Log Races</a></li>
-            <li><a href='/food'>Meal Log</a></li>
-            <li><a href='/createfood'>Log Meals</a></li>
-            <li><a href='/calCount'>Calorie Calculator</a></li>
+            <li class="active"><a href='/'><u><b>Home</b></u></a></li>
+            <li><a href='/log'><u><b>My Running Log</b></u></a></li>
+            <li><a href='/createLog'><u><b>Create Run Log</b></u></a></li>
+            <li><a href='/race'><u><b>My Racing Log</b></u></a></li>
+            <li><a href='/createRace'><u><b>Create Race Log</b></u></a></li>
+            <li><a href='/food'><u><b>My Meal Log</b></u></a></li>
+            <li><a href='/createfood'><u><b>Create Meal Log</b></u></a></li>
+            <li><a href='/calCount'><u><b>Calorie Calculator</b></u></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">   
-            <li class="active"><a href="/logout"> Logout <span class="sr-only"></span></a></li>
+          <li class="active"><a href="/logout"><u><b>Logout</b></u><span class="sr-only"></span></a></li>
           </ul>
         </div>
       </div>
     </nav>
 <center>
-<h2>Log Your Last Race</h2>
+<h2><u><b>Log Your Last Race</u></b></h2>
 <br><hr>
 <div>
-<form method="POST" action="">
-<table width ="55%">
+<form method="POST" action="" >
+<table width ="55%"">
   <tr>
-    <td><fieldset><label><b>Date:&nbsp;</b></label><input type='text' name='date' value=''placeholder="mm/dd/yyyy"></td>
-    <td><label><b>Distance:&nbsp;</b></label><input type='text' name='distance' value='' placeholder="distance"></fieldset></td>
+    <td><fieldset><label><b>Date:&nbsp;</b></label><textarea cols="40" type='text' name='date' value=''placeholder="mm/dd/yyyy" class="form-control" required></textarea></td>
+    
+    <td><label><b>Meet:&nbsp;</b></label><textarea cols="40" type='text' name='meet' value='' placeholder="meet"required class="form-control"></textarea></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Time:&nbsp;</b></label><input type='text' name='time' placeholder="time" value=''></td>
-    <td><label><b>Comments:&nbsp;</b></label><input type='text' name='comments' placeholder="comments" value=''></fieldset></td>
+    <td><fieldset><label><b>Event:&nbsp;</b></label><textarea cols="40" type='text' name='events' placeholder="events" value='' class="form-control" required></textarea></td>
+    
+    <td><label><b>Location:&nbsp;</b></label><textarea cols="40" type='text' name='location' placeholder="location" value=''required class="form-control"></textarea></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Location:&nbsp;</b></label><input type='text' name='location' value='' placeholder="location"></fieldset></td>
+    <td><fieldset><label><b>Time:&nbsp;</b></label><textarea cols="40" type='text' name='time' value='' placeholder="time" class="form-control" required></textarea></td>
+    
+    <td><label><b>Notes:&nbsp;</b></label><textarea cols="40" type='text' name='notes' value='' placeholder="notes" class="form-control"></textarea></fieldset></td>
+  </tr>
+  <tr><td><br></td></tr>
+   <tr>
+    <td><fieldset><label><b>Pace:&nbsp;</b></label><textarea cols="40" type='text' name='pace' value='' placeholder="pace" class="form-control"></textarea></fieldset></td>
   </tr>
   <tr><td><br></td></tr>
   <tr>    
-  <td><fieldset><input type='submit' value='Post'></fieldset></td></tr>
+  <td><fieldset><input type='submit' value='Post' class="btn btn-default"></fieldset></td></tr>
   </table>
 </form>
 </div><hr><br><br></center>
