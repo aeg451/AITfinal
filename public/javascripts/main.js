@@ -313,7 +313,7 @@ function cals() {
            total+= (12.7 * curr);
        }
        if(index === 1){
-           total-= (6.8 * curr);
+           total+= (6.8 * curr);
        }
        if(index === 2){
            total+= (6.23 * curr) + 66;
