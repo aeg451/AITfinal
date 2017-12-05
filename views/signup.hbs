@@ -55,17 +55,3 @@
         </div>
     </div>
 </div>
-<script>
-        document.addEventListener("DOMContentLoaded", main);
-        function main() {
-            const signup = document.getElementById('signupBtn');
-            signup.addEventListener('click', function (evt) {
-                if((document.getElementsByName('password')[0].value !== document.getElementsByName('confirm_password')[0].value)) {
-                    evt.preventDefault();
-                    const s = document.getElementById('signup-err')
-                    s.innerHTML = "<center>Passwords don't match </center>";
-                    s.style.color = "red";
-                }
-            });
-        }
-</script>

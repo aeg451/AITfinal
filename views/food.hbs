@@ -39,21 +39,26 @@
 </nav>
 <div class="container-fluid">
 <center><h2><u><b>Meal Log</u></b></h2><br></center>
-<div><center>
-<table width = '90%' class="table table-bordered table-condensed table-hover"></center>
+<div class ="col-xs-3"> 
+<form>
+<input name="filter"  type="text" class="form-control" onkeyup="search(this, 'results')" type="text" placeholder="search">
+</form></div>
+<div>
+<center>
+<table width = '90%' id="results" class="table table-bordered table-condensed table-hover"></center>
 <thead class="table-head">
 <tr>
   <th></th>
-  <th>Date</th>
+  <th id='date'>Date</th>
   <th>Breakfast</th>
   <th>Lunch</th>
   <th>Dinner</th>
   <th>Snack</th>
   <th>Other</th>
-  <th>Exercised</th>
+  <th id="exer">Exercised</th>
 </tr>
 </thead>
-<tbody class="table-body">
+<tbody id="tb"class="table-body">
 {{#each food as |foods|}}
 <form method='POST' action="">
   <tr>
@@ -71,4 +76,3 @@
 </tbody>
 <center></table></center>
 </div> </div>
-

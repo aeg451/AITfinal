@@ -46,7 +46,7 @@
 <table width ="60%" class="create-table">
 	<tr>
 		<td>
-			<fieldset >
+			<fieldset>
 				<label><b>Type:</b></label><br>
 				<table width= "100%">
 					<tr><td><input type='radio' name='type' value='Daily Run'required><label>&nbsp;Daily Run&nbsp;</label></td>
@@ -85,21 +85,3 @@
   </table>
 </form>
 </div><hr><br><br></center></div>
-<script>
-
-document.addEventListener("DOMContentLoaded", main);
-  function main() {
-    const submit = document.getElementById('submitBtn');
-    submit.addEventListener('click', function (evt) {
-      const reg = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
-      const date = document.getElementById('date')
-      const M = date.value.match(reg);
-      if(!M){
-      evt.preventDefault();
-        const s = document.getElementById('dateError')
-        s.innerHTML = "Invalid date format : mm/dd/yyyy";
-        s.style.color = "red";
-      }
-    });
-}
-</script>

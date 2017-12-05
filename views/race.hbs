@@ -39,21 +39,26 @@
 </nav>
 <div class="container-fluid">
 <center><h2><u><b>Racing Log</u></b></h2><br></center>
-<div><center>
-<table width = '90%' class="table table-bordered table-condensed table-hover"></center>
+<div class ="col-xs-3"> 
+<form>
+<input name="filter"  type="text" class="form-control" onkeyup="search(this, 'results')" type="text" placeholder="search">
+</form></div>
+<div>
+<center>
+<table width = '90%' id="results" class="table table-bordered table-condensed table-hover"></center>
 <thead class="table-head">
 <tr>
   <th></th>
-  <th>Date</th>
-  <th>Event</th>
-  <th>Time</th>
+  <th id="date">Date</th>
+  <th id="evnt">Event</th>
+  <th id='ti'>Time</th>
   <th>Pace</th>
   <th>Notes</th>
   <th>Meet</th>
   <th>Location</th>
 </tr>
 </thead>
-<tbody class="table-body">
+<tbody id="tb"class="table-body">
 {{#each race as |raced|}}
 <form method='POST' action="">
   <tr>
@@ -70,4 +75,4 @@
 {{/each}}
 </tbody>
 <center></table></center>
-</div>
+</div> </div>

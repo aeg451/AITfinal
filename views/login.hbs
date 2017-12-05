@@ -16,31 +16,32 @@
   </div>
 </nav>
 <div class="container-fluid">
-<center><h1>Log My Runz</h1></center>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <h2>Login</h2><hr>
-                        </div>
-                        <div class="col-md-12">
-                            <form action="/login" method="post">
-                                <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="username" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="password" />
-                                </div>
-                                <div class="col-md-12" id = "login-err"></div>
-                                <div class="form-group text-right">
-                                    <button type="submit" id="loginBtn" class="btn btn-success"> Login</button>
-                                </div>
-                            </form>
+    <center><h1>Log My Runz</h1></center>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2>Login</h2><hr>
+                            </div>
+                            <div class="col-md-12">
+                                <form action="/login" method="post">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="password" />
+                                    </div>
+                                    <div class="col-md-12" id = "login-err"></div>
+                                    <div class="form-group text-right">
+                                        <button type="submit" id="loginBtn" class="btn btn-success"> Login</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -48,19 +49,3 @@
         </div>
     </div>
 </div>
-</div>
-<script>
-        document.addEventListener("DOMContentLoaded", main);
-        function main() {
-            const login = document.getElementById('loginBtn');
-            login.addEventListener('click', function (evt) {
-                if( (document.getElementsByName('username')[0].value == "")
-                ||(document.getElementsByName('password')[0].value == "") ) {
-                    evt.preventDefault();
-                    const s = document.getElementById('login-err');
-                    s.innerHTML = "<center> Please enter a valid  <br> username and password </center>";
-                    s.style.color = "red";
-                }
-            });
-        }
-</script>

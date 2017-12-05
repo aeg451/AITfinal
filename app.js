@@ -7,7 +7,6 @@ const Food = mongoose.model('Food');
 const User = mongoose.model('User');
 const app = express();
 
-
 const bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -34,14 +33,18 @@ passport.deserializeUser(function(id, done){
         done(err,user);
     });
 });
-
+/*Reference: http://passportjs.org/docs/configure*/
+///////////////////////////////////////////////////////////
+//PASSPORT
+///////////////////////////////////////////////////////////
 passport.use('local-login', new LocalStrategy({
     passReqToCallback: true
 },
     function(req, username, password, done){
-
         User.findOne({'username':username}, function (err,user) {
-            if(err) return done(err);
+            if(err){ 
+                return done(err);
+            }
             if(!user){
                 console.log('Please enter a valid username instead of '+username );
                 return done(null,false, req.flash('message','No user found.'));
@@ -50,46 +53,43 @@ passport.use('local-login', new LocalStrategy({
                 console.log('Invlaid password!');
                 return done(null, false, req.flash('message', 'Invalid password.'));
             }
-
             return done(null,user);
             }
         );
-
-}));
-
-passport.use('local-signup', new LocalStrategy({
-        passReqToCallback: true
-    },
-    function(req, username, password, done){
-            process.nextTick(function(){
-
-            User.findOne({'username': username}, function (err, user) {
-                    if (err) {console.log('SignUp Error: '+err); return done(err);}
-                    if (user) {
-                        console.log('User already exists');
-                        return done(null, false, req.flash('message',"User already exists."));
-                    } else {
-
-                        var newUser = new User()
-
-                        newUser.username = username;
-                        newUser.password = newUser.createHash(password);
-
-                        newUser.save(function(err){
-                            if(err) {console.log('Error: '+err); throw err;}
-                            console.log("SignUp Succeeded");
-                            return done(null,newUser);
-                        });
-
-                    }
-
-
-                });
-
-            });
     }
 ));
 
+passport.use('local-signup', new LocalStrategy({
+        passReqToCallback: true
+},
+    function(req, username, password, done){
+        process.nextTick(function(){
+            User.findOne({'username': username}, function (err, user) {
+                if (err) {
+                    console.log('SignUp Error: '+err); 
+                    return done(err);
+                }
+                if (user) {
+                    console.log('User already exists');
+                    return done(null, false, req.flash('message',"User already exists."));
+                } 
+                else {
+                    const newUser = new User()
+                    newUser.username = username;
+                    newUser.password = newUser.createHash(password);
+                    newUser.save(function(err){
+                        if(err) {
+                            console.log('Error: '+err); 
+                            throw err;
+                        }
+                        console.log("SignUp Succeeded");
+                        return done(null,newUser);
+                    });
+                }
+            });
+        });
+    }
+));
 ///////////////////////////////////////////////////////////
 //LOGIN
 ///////////////////////////////////////////////////////////
@@ -130,10 +130,6 @@ app.get('/logout', function(req, res){
     res.redirect('/');
     req.session.notice = "You have successfully been logged out " + name + "!";
 });
-
-/*Reference:
-http://passportjs.org/docs/configure
-* */
 ///////////////////////////////////////////////////////////
 //VALIDATE AUTHENTICATION
 ///////////////////////////////////////////////////////////

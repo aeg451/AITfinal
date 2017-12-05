@@ -39,21 +39,26 @@
 </nav>
 <div class="container-fluid">
 <center><h2><u><b>Running Log</u></b></h2><br></center>
-<div><center>
-<table width = '90%' class="table table-bordered table-condensed table-hover"></center>
+<div class ="col-xs-3"> 
+<form>
+<input name="filter"  type="text" class="form-control" onkeyup="search(this, 'results')" type="text" placeholder="search">
+</form></div>
+<div>
+<center>
+<table width = '90%'   id="results" class="table table-bordered table-condensed table-hover"></center>
 <thead class="table-head">
 <tr>
   <th></th>
-  <th>Date</th>
-  <th>Type</th>
-  <th>Distance</th>
-  <th>Pace</th>
+  <th id="date" >Date</th>
+  <th id="ty">Type</th>
+  <th id="dis">Distance</th>
+  <th id="pa">Pace</th>
   <th>Splits</th>
   <th>Notes</th>
   <th>Location</th>
 </tr>
 </thead>
-<tbody class="table-body">
+<tbody id="tb"class="table-body">
 {{#each log as |logged|}}
 <form method='POST' action="">
   <tr>
@@ -71,4 +76,3 @@
 <tbody>
 <center></table></center>
 </div> </div>
-
