@@ -36,8 +36,7 @@
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" placeholder="password" />
                                 </div>
-                                <div class="col-md-12" id = "log">
-                        </div>
+                                <div class="col-md-12" id = "login-err"></div>
                                 <div class="form-group text-right">
                                     <button type="submit" id="loginBtn" class="btn btn-success"> Login</button>
                                 </div>
@@ -53,16 +52,14 @@
 <script>
         document.addEventListener("DOMContentLoaded", main);
         function main() {
-            var f = document.getElementById('loginBtn');
-            f.addEventListener('click', function (evt) {
+            const login = document.getElementById('loginBtn');
+            login.addEventListener('click', function (evt) {
                 if( (document.getElementsByName('username')[0].value == "")
                 ||(document.getElementsByName('password')[0].value == "") ) {
                     evt.preventDefault();
-                    var err = document.createTextNode("Please enter username and password");
-                    var span = document.createElement("span");
-                    span.style.color = "red";
-                    span.appendChild(err);
-                    document.getElementById('log').appendChild(span);
+                    const s = document.getElementById('login-err');
+                    s.innerHTML = "<center> Please enter a valid  <br> username and password </center>";
+                    s.style.color = "red";
                 }
             });
         }

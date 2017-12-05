@@ -45,7 +45,7 @@
 <form method="POST" action="" name="create">
 <table width ="60%"">
   <tr>
-    <td><fieldset><label><b>Date:&nbsp;</b></label><textarea cols="40" type='text' name='date' value=''placeholder="mm/dd/yyyy" class="form-control" required></textarea></td>
+    <td><fieldset><label><b>Date:&nbsp;</b></label><textarea cols="40" type='text' id="date" name='date' value=''placeholder="mm/dd/yyyy" class="form-control" required></textarea></td>
     
     <td><label><b>Meet:&nbsp;</b></label><textarea cols="40" type='text' name='meet' value='' placeholder="meet"required class="form-control"></textarea></fieldset></td>
   </tr>
@@ -65,9 +65,28 @@
    <tr>
     <td><fieldset><label><b>Pace:&nbsp;</b></label><textarea cols="40" type='text' name='pace' value='' placeholder="pace" class="form-control"></textarea></fieldset></td>
   </tr>
-  <tr><td><br></td></tr>
+  <tr><td><br><label class="col-md-12" id="dateError"></label><br></td></tr>
   <tr>    
-  <td><fieldset><input type='submit' value='Post' class="btn btn-default"></fieldset></td></tr>
+  <td>
+  <fieldset><button type="submit" id="submitBtn" value="post" class="btn btn-default">Post</button></fieldset></td></tr>
   </table>
 </form>
 </div><hr><br><br></center></div>
+<script>
+
+document.addEventListener("DOMContentLoaded", main);
+  function main() {
+    const submit = document.getElementById('submitBtn');
+    submit.addEventListener('click', function (evt) {
+      const reg = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
+      const date = document.getElementById('date')
+      const M = date.value.match(reg);
+      if(!M){
+      evt.preventDefault();
+        const s = document.getElementById('dateError')
+        s.innerHTML = "Invalid date format : mm/dd/yyyy";
+        s.style.color = "red";
+      }
+    });
+}
+</script>

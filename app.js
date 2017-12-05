@@ -7,21 +7,16 @@ const Food = mongoose.model('Food');
 const User = mongoose.model('User');
 const app = express();
 
-//bodyParser
+
 const bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 
-//serving static files
 const path = require('path');
 const publicPath = path.resolve(__dirname,'public');
 app.use(express.static('public'));
 
-
-//use passort for user sign in
-
-
 const passport = require('passport');
-    LocalStrategy = require('passport-local').Strategy;
+LocalStrategy = require('passport-local').Strategy;
 const flash = require("connect-flash");
 const expressSession = require('express-session');
 
@@ -30,11 +25,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'hbs');
-/*
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-*/
 
 passport.serializeUser(function(user,done){
     done(null,user._id);
@@ -44,9 +34,6 @@ passport.deserializeUser(function(id, done){
         done(err,user);
     });
 });
-
-
-
 
 passport.use('local-login', new LocalStrategy({
     passReqToCallback: true
@@ -115,12 +102,6 @@ app.post('/login', passport.authenticate('local-login', {
     failureFlash : true
     })
 );
-/*
-req.login(user, function(err){
-    if(err){return next(err);}
-    return res.redirect('/users/'+req.user.username);
-});
-*/
 ///////////////////////////////////////////////////////////
 //INDEX
 ///////////////////////////////////////////////////////////
@@ -320,5 +301,3 @@ app.get('/calCount', ensureAuthenticated, function (req, res) {
 //LISTEN
 ///////////////////////////////////////////////////////////
 app.listen(process.env.PORT||3000);
-
-

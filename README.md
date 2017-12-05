@@ -2,8 +2,11 @@
 
 ## Overview
 
-As a student-athlete on both the Cross Country and Track & Field team, it is important to log our runs daily. As a team we have used various running log sites, all of which are terrible. Every site that we have tried is glitchy and fails us. This is why I'd like to create this web app. 
-My goal is to make a site that is as user friendly as possible but that suits the needs of runners. This web app will allow users to create/edit/delete each log as they please. Each log will keep track of the date with a timestamp, what type of run(s) with radio buttons, and the pace of each run. In addition the user will have the option to share goals, comments, and if I am able to get a Google API or 'Map My Run' API, then I'll give the user a location option. 
+As a student-athlete on both the Cross Country and Track & Field team, it is important to log our runs daily. As a team we have used various running log sites, all of which are terrible. Every site that we have tried is glitchy and fails us. This is why I'd created this web app. 
+
+My goal was to make a site that is as user friendly as possible but that suits the needs of runners. This web app will allow users to create/delete each log as they please. There are three types of logs the user can use. One log is for daily runs that has multiple fields that the user can fill out on the form. There is also a page for the user to log their meals and races. Both have multiple fields to fill out. There is a page that calculates the number of calories a runner should eat in a day, although its recommended to eat a high counts when more active.
+
+When the user attempts to visit the web app from any page, they will be redirected to login if their not logged in, or they can signup. After signing up or logging in they'll be redirected to the home page, that has the weather for New York and a map that the user can use to find their next run. 
 
 ## Data Model
 

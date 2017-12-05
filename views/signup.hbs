@@ -42,9 +42,9 @@
                                         <label for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
                                         <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
                                     </div>
+                                    <div class="col-md-12" id="signup-err"></div>
                                     <div class="form-group text-right">
-                                     <!--   <button type="submit" class="btn btn-info">Register</button> -->
-                                     <input type="submit" class="btn btn-primary btn-sm" value="Register"/>
+                                     <input type="submit" id="signupBtn" class="btn btn-primary btn-sm" value="Register"/>
                                     </div>
                                 </form>
                             </div>
@@ -55,3 +55,17 @@
         </div>
     </div>
 </div>
+<script>
+        document.addEventListener("DOMContentLoaded", main);
+        function main() {
+            const signup = document.getElementById('signupBtn');
+            signup.addEventListener('click', function (evt) {
+                if((document.getElementsByName('password')[0].value !== document.getElementsByName('confirm_password')[0].value)) {
+                    evt.preventDefault();
+                    const s = document.getElementById('signup-err')
+                    s.innerHTML = "<center>Passwords don't match </center>";
+                    s.style.color = "red";
+                }
+            });
+        }
+</script>
