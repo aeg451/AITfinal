@@ -316,7 +316,7 @@ function cals() {
            total+= (6.8 * curr);
        }
        if(index === 2){
-           total+= (6.23 * curr) + 66;
+           total+= (6.23 * curr) + 622;
        }
        return total;
      });
