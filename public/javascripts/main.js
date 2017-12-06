@@ -338,11 +338,11 @@ function cals() {
   result = [1.2, 1.375,1.55,1.725,1.9].map( function(num) {
     return Math.round(num * BMR);
   });
-  document.getElementById("totalCals").innerHTML ="<u><b>" + result[0] + "</u></b> kcal per day if you are sedentary (little or no exercise)<br><u><b>"
+  document.getElementById("totalCals").innerHTML ="<label id='kcals'><br><u><b>" + result[0] + "</u></b> kcal per day if you are sedentary (little or no exercise)<br><u><b>"
   + result[1] + "</u></b> kcal per day if you are lightly active (light exercise/sports 1-3 days/week)<br><u><b>" 
   + result[2] + "</u></b> kcal per day if you are moderatetely active (moderate exercise/sports 3-5 days/week)<br><u><b>" 
   + result[3] + "</u></b> kcal per day if you are very active (hard exercise/sports 6-7 days a week)<br><u><b>" 
-  + result[4] + "</u></b> kcal per day if you are extra active (very hard exercise/sports & physical job or 2x training)<br><u><b>";
+  + result[4] + "</u></b> kcal per day if you are extra active (very hard exercise/sports & physical job or 2x training)</label><br><br><br>";
 }
 ///////////////////////////////////////////////////////////
 //SIGNUP PASSWORD VALIDATION

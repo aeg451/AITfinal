@@ -47,7 +47,7 @@
 <tr>
   <td>
       <fieldset>
-      <label><b>Did you exercise today?</b></label><br>
+      <label><b>Did you exercise today? <span class="text-danger">*</span></b></label><br>
       <table width= "50%">
       <tr><td><input type='radio' name='exercise' value='yes' required><label>&nbsp;Yes</label></td>
       <td><input type='radio' name='exercise' value='no'><label>&nbsp;No</label></td>
@@ -67,7 +67,7 @@
   </tr>
   <tr><td><br></td></tr>
   <tr>
-    <td><fieldset><label><b>Date:&nbsp;</b></label><textarea cols="40" id="date" type='text' name='date' value='' placeholder="mm/dd/yyyy" class="form-control" required></textarea></td>
+    <td><fieldset><label><b>Date: <span class="text-danger">*</span>&nbsp;</b></label><textarea cols="40" id="date" type='text' name='date' value='' placeholder="mm/dd/yyyy" class="form-control" required></textarea></td>
     <td><label><b>Other:&nbsp;</b></label><textarea cols="40" type='text' name='other' placeholder="other" value='' class="form-control"></textarea></fieldset></td>
   </tr>
   <tr><td><br><label class="col-md-12" id="dateError"></label><br></td></tr>

@@ -47,7 +47,7 @@
 	<tr>
 		<td>
 			<fieldset>
-				<label><b>Type:</b></label><br>
+				<label><b>Type: <span class="text-danger">*</span></b></label><br>
 				<table width= "100%">
 					<tr><td><input type='radio' name='type' value='Daily Run'required><label>&nbsp;Daily Run&nbsp;</label></td>
 					<td><input type='radio' name='type' value='Workout'><label>&nbsp;Workout&nbsp;</label></td>
@@ -62,13 +62,13 @@
 	</tr>
 	<tr><td><br></td></tr>
 	<tr>
-		<td><fieldset><label><b>Distance:&nbsp;</b></label><textarea cols="40" type='text' name='distance' value='' placeholder="distance"required class="form-control"></textarea></td>
+		<td><fieldset><label><b>Distance: <span class="text-danger">*</span>&nbsp;</b></label><textarea cols="40" type='text' name='distance' value='' placeholder="distance"required class="form-control"></textarea></td>
 		<div id="dateError"></div>
-		<td><label><b>Date:&nbsp;</b></label><textarea id="date" cols="40" type='text' name='date' placeholder="mm/dd/yyyy" value=''required class="form-control"></textarea></fieldset></td>
+		<td><label><b>Date: <span class="text-danger">*</span>&nbsp;</b></label><textarea id="date" cols="40" type='text' name='date' placeholder="mm/dd/yyyy" value=''required class="form-control"></textarea></fieldset></td>
 	</tr>
 	<tr><td><br></td></tr>
 	<tr>
-		<td><fieldset><label><b>Pace:&nbsp;</b></label><textarea cols="40" type='text' name='pace' value=''placeholder="pace"required class="form-control"></textarea></fieldset></td>
+		<td><fieldset><label><b>Pace: <span class="text-danger">*</span>&nbsp;</b></label><textarea cols="40" type='text' name='pace' value=''placeholder="pace"required class="form-control"></textarea></fieldset></td>
 		
 		<td><label><b>Notes:&nbsp;</b></label><textarea cols="40" type='text' name='notes' placeholder="notes" value=''class="form-control"></textarea></fieldset</td>
 	</tr>
@@ -76,7 +76,7 @@
 	<tr>
 		<td><fieldset><label><b>Splits:&nbsp;</b></label><textarea cols="40" type='text' name='splits' value='' placeholder="splits" class="form-control"></textarea></td>
 		
-		<td><label><b>Location:&nbsp;</b></label><textarea cols="40" type='text' name='location' placeholder="location" value=''required class="form-control"></textarea></fieldset></td>
+		<td><label><b>Location: <span class="text-danger">*</span>&nbsp;</b></label><textarea cols="40" type='text' name='location' placeholder="location" value=''required class="form-control"></textarea></fieldset></td>
 	</tr>
   <tr><td><br><label class="col-md-12" id="dateError"></label><br></td></tr>
   <tr>    

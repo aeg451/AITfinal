@@ -46,11 +46,11 @@ passport.use('local-login', new LocalStrategy({
                 return done(err);
             }
             if(!user){
-                console.log('Please enter a valid username instead of '+username );
+                console.log('Please enter a valid username instead of '+ username );
                 return done(null,false, req.flash('message','No user found.'));
             }
             if(!user.isValidPassword(password)) {
-                console.log('Invlaid password!');
+                console.log('Invalid password!');
                 return done(null, false, req.flash('message', 'Invalid password.'));
             }
             return done(null,user);
@@ -66,7 +66,7 @@ passport.use('local-signup', new LocalStrategy({
         process.nextTick(function(){
             User.findOne({'username': username}, function (err, user) {
                 if (err) {
-                    console.log('SignUp Error: '+err); 
+                    console.log('Signup Error: '+ err); 
                     return done(err);
                 }
                 if (user) {
@@ -79,10 +79,10 @@ passport.use('local-signup', new LocalStrategy({
                     newUser.password = newUser.createHash(password);
                     newUser.save(function(err){
                         if(err) {
-                            console.log('Error: '+err); 
+                            console.log('Error: '+ err); 
                             throw err;
                         }
-                        console.log("SignUp Succeeded");
+                        console.log("Signup completed");
                         return done(null,newUser);
                     });
                 }
@@ -151,7 +151,7 @@ app.get('/log',ensureAuthenticated,function (req,res) {
         });
     }
     else{
-        console.log("please login :)");
+        console.log("please login");
     }
 });
 app.post('/log',function(req, res) {
@@ -200,7 +200,7 @@ app.get('/race',ensureAuthenticated,function (req, res) {
         });
     }
     else
-        console.log("please login :)");
+        console.log("please login");
 });
 app.post('/race',function(req, res) {
     if(req.body.delete){
@@ -248,7 +248,7 @@ app.get('/food',ensureAuthenticated,function (req,res) {
         });
     }
     else{
-        console.log("please login :)");
+        console.log("please login");
     }
 });
 app.post('/food',function(req, res) {
